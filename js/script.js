@@ -48,20 +48,30 @@ document.addEventListener('DOMContentLoaded', function() {
     const backToTopBtn = document.getElementById('backToTop');
     
     if (backToTopBtn) {
-        window.addEventListener('scroll', function() {
+        // Function to update button visibility
+        function updateBackToTopVisibility() {
             if (window.pageYOffset > 300) {
                 backToTopBtn.classList.add('show');
             } else {
                 backToTopBtn.classList.remove('show');
             }
-        });
+        }
         
+        // Update on scroll
+        window.addEventListener('scroll', updateBackToTopVisibility);
+        
+        // Click handler
         backToTopBtn.addEventListener('click', function() {
             window.scrollTo({
                 top: 0,
                 behavior: 'smooth'
             });
+            // Ensure button is hidden after clicking
+            setTimeout(updateBackToTopVisibility, 500);
         });
+        
+        // Initial check
+        updateBackToTopVisibility();
     }
 
     // ============================================

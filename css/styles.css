@@ -124,6 +124,10 @@
     box-shadow: var(--shadow-lg);
 }
 
+html {
+    overflow-y: scroll;
+}
+
 body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     background: var(--bg-primary);
@@ -990,38 +994,6 @@ main {
     box-shadow: 0 20px 30px rgba(59, 130, 246, 0.4);
 }
 
-/* Back to Top Button */
-.back-to-top {
-    position: fixed;
-    bottom: var(--spacing-xl);
-    right: calc(var(--spacing-xl) + 72px);
-    width: 48px;
-    height: 48px;
-    background: var(--gradient-blue);
-    border: none;
-    border-radius: var(--radius-full);
-    color: white;
-    font-size: 1.25rem;
-    cursor: pointer;
-    box-shadow: var(--shadow-xl);
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(20px);
-    transition: all var(--transition-base);
-    z-index: 999;
-}
-
-.back-to-top.show {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-}
-
-.back-to-top:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 20px 30px rgba(59, 130, 246, 0.4);
-}
-
 /* ============================================
    TOP NAVBAR
    ============================================ */
@@ -1752,15 +1724,13 @@ main {
     box-shadow: var(--shadow-xl);
     opacity: 0;
     visibility: hidden;
-    transform: translateY(20px);
-    transition: all var(--transition-base);
+    transition: opacity var(--transition-base), visibility var(--transition-base);
     z-index: 999;
 }
 
 .back-to-top.show {
     opacity: 1;
     visibility: visible;
-    transform: translateY(0);
 }
 
 .back-to-top:hover {

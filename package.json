@@ -1,0 +1,14 @@
+{
+  "name": "unigate-site",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "check-assets": "node scripts/check-assets-recursive.js",
+    "check-health": "node scripts/check-health.js",
+    "ci-checks": "npm run check-assets && npm run check-health",
+    "capture-client-logs": "node scripts/capture-client-logs.js"
+  },
+  "devDependencies": {
+    "puppeteer": "^20.0.0"
+  }
+}
