@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Admin — Tickets</title>
+<link rel="stylesheet" href="../css/admin.css">
+</head>
+<body>
+  <!-- ...existing admin layout reuse (simplified) ... -->
+  <main class="admin-main">
+    <section style="padding:20px;">
+      <h2>Support Tickets</h2>
+      <div>
+        <button id="newTicketBtn" class="btn">New Ticket</button>
+        <input id="ticketSearch" placeholder="Search subject..." style="margin-left:12px;padding:8px;">
+      </div>
+      <table id="ticketsTable" class="table" style="margin-top:12px">
+        <thead><tr><th>ID</th><th>Subject</th><th>Status</th><th>Assigned</th><th>Actions</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </section>
+  </main>
+
+<script>
+async function fetchTickets() {
+  const res = await fetch('/api/tickets', { headers: { 'Authorization': 'Bearer ' + localStorage.getItem('token') }});
+  const data = await res.json();
+  const tbody = document.querySelector('#ticketsTable tbody'); tbody.innerHTML = '';
+  (data.rows || []).forEach(t=>{
+    const tr = document.createElement('tr');
+    tr.innerHTML = `<td>${t.id}</td><td>${t.subject}</td><td>${t.status}</td><td>${t.assignedTo||''}</td>
+      <td><button data-id="${t.id}" class="view">View</button> <button data-id="${t.id}" class="assign">Assign</button></td>`;
+    tbody.appendChild(tr);
+  });
+}
+document.addEventListener('DOMContentLoaded', ()=> {
+  fetchTickets();
+  document.getElementById('newTicketBtn').addEventListener('click', async ()=>{
+    const subject = prompt('Ticket subject');
+    if(!subject) return;
+    await fetch('/api/tickets', { method:'POST', headers:{ 'Content-Type':'application/json','Authorization':'Bearer '+localStorage.getItem('token') }, body:JSON.stringify({ subject })});
+    fetchTickets();
+  });
+
+  document.querySelector('#ticketsTable').addEventListener('click', async (e)=>{
+    if(e.target.matches('.assign')) {
+      const id = e.target.getAttribute('data-id');
+      const assignedTo = prompt('Assign to userId');
+      if(!assignedTo) return;
+      await fetch(`/api/tickets/${id}/assign`, { method:'PATCH', headers:{ 'Content-Type':'application/json','Authorization':'Bearer '+localStorage.getItem('token') }, body: JSON.stringify({ assignedTo }) });
+      fetchTickets();
+    }
+    if(e.target.matches('.view')) {
+      const id = e.target.getAttribute('data-id');
+      const r = await fetch(`/api/tickets/${id}`, { headers:{ 'Authorization':'Bearer '+localStorage.getItem('token') }});
+      const t = await r.json();
+      alert(JSON.stringify(t, null, 2));
+    }
+  });
+});
+</script>
+</body>
+</html>

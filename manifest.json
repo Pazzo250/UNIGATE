@@ -1,0 +1,23 @@
+{
+  "name": "UNIGATE - Apply to African Universities",
+  "short_name": "UNIGATE",
+  "description": "UNIGATE helps students apply to multiple African universities without leaving home. Apply to universities in Rwanda, Kenya, South Africa, Ghana, and more with our streamlined application process.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#4cb3ff",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "icons": [
+    {
+      "src": "LOGO.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "LOGO.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

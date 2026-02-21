@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UNIGATE - Apply to African Universities</title>
+    <meta name="description" content="Apply to multiple African universities without leaving home. Streamlined applications for universities across Africa.">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/profileMenu.css">
+    <link rel="stylesheet" href="css/siteNav.css">
+    <link rel="stylesheet" href="fontawesome-free-6.7.2-web/css/all.min.css">
+    <link rel="icon" href="LOGO.png" type="image/png">
+</head>
+<body data-theme="dark">  
+
+    <!-- Top Navigation Bar -->
+    <nav class="top-navbar">
+        <div class="navbar-container">
+            <div class="navbar-left">
+                <button class="sidebar-toggle" id="sidebarToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="brand-logo">
+                    <a href="index.html"><img src="LOGO.png" alt="UNIGAT Logo"></a>
+                    <span class="brand-name">UNIGATE</span>
+                </div>
+            </div>
+
+            <div class="navbar-center">
+                <ul class="nav-menu">
+                    <li><a href="index.html" class="active"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="home.html"><i class="fas fa-rocket"></i> Apply</a></li>
+                    <li><a href="roadmap.html"><i class="fas fa-map"></i> Roadmap</a></li>
+                    <li><a href="university.html"><i class="fas fa-university"></i> Universities</a></li>
+                    <li><a href="student-dashboard.html"><i class="fas fa-chart-line"></i> Dashboard</a></li>
+                </ul>
+            </div>
+
+            <div class="navbar-right">
+                <button class="theme-toggle" id="themeToggle" title="Toggle Theme">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="notification-btn" title="Notifications">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-badge">2</span>
+                </button>
+                <div class="profile-menu">
+                    <img id="profileAvatar" src="LOGO.png" alt="Profile" class="profile-avatar">
+                    <span id="profileName" class="profile-name">Welcome</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Authentication Popup Modal -->
+    <div class="auth-popup" id="authPopup" aria-hidden="true">
+      <div class="auth-popup-content" id="popupContent" role="dialog" aria-modal="true">
+
+        <!-- Header -->
+        <div class="auth-header">
+          <h2 id="popupHeading">Sign In</h2>
+          <button id="closePopup" class="close-btn" aria-label="Close popup">×</button>
+        </div>
+
+        <!-- SCREEN: Student Selection -->
+        <div id="selectScreen" class="auth-screen active">
+          <h3 class="auth-role-title">Students</h3>
+          <div class="roles">
+            <button class="auth-btn" data-type="firstyear">First-year student</button>
+            <button class="auth-btn" data-type="transfer">Transfer student</button>
+          </div>
+          <p class="no-account">Don't have an account yet?</p>
+          <a href="#" class="create-link openPopup" data-type="create">Create an account →</a>
+        </div>
+
+        <!-- SCREEN: LOGIN FORM -->
+        <div id="loginScreen" class="auth-screen">
+          <h3 id="loginTitle">Sign In</h3>
+          <form id="loginForm" class="login-form" novalidate>
+            <div id="extraFieldContainer"></div>
+            <label class="sr-only" for="loginEmail">Email</label>
+            <input type="email" id="loginEmail" placeholder="Email" required autocomplete="email">
+            <label class="sr-only" for="loginPassword">Password</label>
+            <input type="password" id="loginPassword" placeholder="Password" required autocomplete="current-password">
+            <button type="submit" class="submit-btn">Log In</button>
+          </form>
+          <p id="errorMsg" class="error" role="alert" aria-live="polite"></p>
+          <button id="backToSelect" class="link-btn">← Back</button>
+        </div>
+
+        <!-- SCREEN: CREATE ACCOUNT FORM -->
+        <div id="createScreen" class="auth-screen">
+          <h3>Create Account</h3>
+          <form id="createForm" class="login-form" novalidate>
+            <label class="sr-only" for="createName">Name</label>
+            <input type="text" id="createName" placeholder="Full Name" required autocomplete="name">
+            <label class="sr-only" for="createEmail">Email</label>
+            <input type="email" id="createEmail" placeholder="Email" required autocomplete="email">
+            <label class="sr-only" for="createPassword">Password</label>
+            <input type="password" id="createPassword" placeholder="Password" required autocomplete="new-password">
+            <label class="sr-only" for="createPassword2">Confirm Password</label>
+            <input type="password" id="createPassword2" placeholder="Confirm Password" required autocomplete="new-password">
+            <button type="submit" class="submit-btn">Create Account</button>
+          </form>
+          <p id="createErrorMsg" class="error" role="alert" aria-live="polite"></p>
+          <button id="backToSelectFromCreate" class="link-btn">← Back</button>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Profile Dropdown Menu -->
+    <div class="profile-dropdown" id="profileDropdown" aria-hidden="true">
+      <a href="#" class="dropdown-item openPopup" data-type="signin">Sign In</a>
+      <a href="#" class="dropdown-item openPopup" data-type="create">Create Account</a>
+    </div>
+
+    <!-- Mobile Menu -->
+     <div class="mobile-nav-overlay" id="mobileNavOverlay"></div>
+    <div class="mobile-nav" id="mobileNav">
+        <div class="mobile-nav-header">
+            <h3>Menu</h3>
+            <button class="mobile-nav-close" id="mobileNavClose">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <ul class="mobile-nav-menu">
+            <li><a href="index.html" class="active"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="roadmap.html"><i class="fas fa-map"></i> Roadmap</a></li>
+            <li><a href="university.html"><i class="fas fa-university"></i> Universities</a></li>
+            <li><a href="student-dashboard.html"><i class="fas fa-chart-line"></i> Dashboard</a></li>
+            <li><a href="login.html"><i class="fas fa-sign-in-alt"></i> Login</a></li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <main>
+
+        <!-- Welcome Section -->
+        <div class="welcome-section">
+            <div class="welcome-text">
+                <h1>Welcome to UNIGATE 👋</h1>
+                <p>Apply to multiple African universities without leaving home. Your future starts here.</p>
+            </div>
+            <div class="welcome-actions">
+                <button class="btn-primary" onclick="scrollToSection('features')">
+                    <i class="fas fa-rocket"></i>
+                    Get Started
+                </button>                
+            </div>
+
+            <!-- Explore Form (Hidden by default) -->
+            <div class="explore-form-container" id="exploreForm" style="display: none;">
+                <div class="explore-form">
+                    <h3><i class="fas fa-compass"></i> Find Your Perfect University</h3>
+                    <form class="explore-form-grid" id="exploreFormData">
+                        <div class="form-group">
+                            <label for="exploreCountry">Country</label>
+                            <select id="exploreCountry" name="country">
+                                <option value="">All Countries</option>
+                                <option value="kenya">Kenya</option>
+                                <option value="south-africa">South Africa</option>
+                                <option value="ghana">Ghana</option>
+                                <option value="nigeria">Nigeria</option>
+                                <option value="rwanda">Rwanda</option>
+                                <option value="uganda">Uganda</option>
+                                <option value="tanzania">Tanzania</option>
+                                <option value="ethiopia">Ethiopia</option>
+                                <option value="egypt">Egypt</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exploreProgram">Program Type</label>
+                            <select id="exploreProgram" name="program">
+                                <option value="">All Programs</option>
+                                <option value="undergraduate">Undergraduate</option>
+                                <option value="masters">Master's Degree</option>
+                                <option value="phd">PhD/Doctorate</option>
+                                <option value="diploma">Diploma</option>
+                                <option value="certificate">Certificate</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exploreField">Field of Study</label>
+                            <select id="exploreField" name="field">
+                                <option value="">All Fields</option>
+                                <option value="business">Business & Management</option>
+                                <option value="engineering">Engineering</option>
+                                <option value="medicine">Medicine & Health</option>
+                                <option value="computer-science">Computer Science</option>
+                                <option value="law">Law</option>
+                                <option value="arts">Arts & Humanities</option>
+                                <option value="science">Science</option>
+                                <option value="education">Education</option>
+                                <option value="agriculture">Agriculture</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exploreBudget">Budget Range</label>
+                            <select id="exploreBudget" name="budget">
+                                <option value="">Any Budget</option>
+                                <option value="low">$0 - $5,000/year</option>
+                                <option value="medium">$5,000 - $15,000/year</option>
+                                <option value="high">$15,000+/year</option>
+                            </select>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="button" class="btn-secondary" onclick="resetExploreForm()">
+                                <i class="fas fa-undo"></i>
+                                Reset
+                            </button>
+                            <button type="submit" class="btn-primary">
+                                <i class="fas fa-search"></i>
+                                Search Universities
+                            </button>
+                        </div>
+                    </form>
+
+                    <!-- Quick Results Preview -->
+                    <div class="explore-results" id="exploreResults" style="display: none;">
+                        <h4><i class="fas fa-lightbulb"></i> Quick Matches</h4>
+                        <div class="results-preview" id="resultsPreview">
+                            <!-- Results will be populated here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Stats Cards -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon blue">
+                    <i class="fas fa-university"></i>
+                </div>
+                <div class="stat-content">
+                    <h3>500+</h3>
+                    <p>African Universities</p>
+                </div>
+                <div class="stat-trend positive">
+                    <i class="fas fa-arrow-up"></i> Growing network
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon green">
+                    <i class="fas fa-users"></i>
+                </div>
+                <div class="stat-content">
+                    <h3>50K+</h3>
+                    <p>Students Helped</p>
+                </div>
+                <div class="stat-trend positive">
+                    <i class="fas fa-arrow-up"></i> This year
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon orange">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                <div class="stat-content">
+                    <h3>98%</h3>
+                    <p>Success Rate</p>
+                </div>
+                <div class="stat-trend positive">
+                    <i class="fas fa-arrow-up"></i> Proven results
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon purple">
+                    <i class="fas fa-globe-africa"></i>
+                </div>
+                <div class="stat-content">
+                    <h3>15+</h3>
+                    <p>African Countries</p>
+                </div>
+                <div class="stat-trend positive">
+                    <i class="fas fa-arrow-up"></i> Expanding reach
+                </div>
+            </div>
+        </div>
+
+        <!-- Content Grid -->
+        <div class="content-grid">
+
+            <!-- Platform Features -->
+            <div class="content-card features-card">
+                <div class="card-header">
+                    <h2><i class="fas fa-star"></i> Platform Features</h2>
+                </div>
+                <div class="card-body">
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-search"></i>
+                        </div>
+                        <div class="feature-info">
+                            <h4>Smart University Search</h4>
+                            <p>Find the perfect university with our advanced filtering and recommendation system.</p>
+                        </div>
+                    </div>
+
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-file-alt"></i>
+                        </div>
+                        <div class="feature-info">
+                            <h4>One-Click Applications</h4>
+                            <p>Apply to multiple universities simultaneously with our streamlined process.</p>
+                        </div>
+                    </div>
+
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <div class="feature-info">
+                            <h4>AI-Powered Advisor</h4>
+                            <p>Get personalized guidance and recommendations from our virtual advisor.</p>
+                        </div>
+                    </div>
+
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-dol"></i>
+                        </div>
+                        <div class="feature-info">
+                            <h4>Scholarship Finder</h4>
+                            <p>Discover scholarships and financial aid opportunities tailored to you.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Universities Preview -->
+            <div class="content-card universities-card">
+                <div class="card-header">
+                    <h2><i class="fas fa-university"></i> Featured Universities</h2>
+                    <a href="university.html" class="view-all">View All <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="card-body">
+                    <div class="university-item">
+                        <div class="university-icon">
+                            <i class="fas fa-university"></i>
+                        </div>
+                        <div class="university-info">
+                            <h4>University of Nairobi</h4>
+                            <p>Kenya • Multiple Programs Available</p>
+                            <span class="university-badge">Top Ranked</span>
+                        </div>
+                    </div>
+
+                    <div class="university-item">
+                        <div class="university-icon">
+                            <i class="fas fa-university"></i>
+                        </div>
+                        <div class="university-info">
+                            <h4>University of Cape Town</h4>
+                            <p>South Africa • Research Excellence</p>
+                            <span class="university-badge">Scholarships</span>
+                        </div>
+                    </div>
+
+                    <div class="university-item">
+                        <div class="university-icon">
+                            <i class="fas fa-university"></i>
+                        </div>
+                        <div class="university-info">
+                            <h4>University of Ghana</h4>
+                            <p>Ghana • Diverse Community</p>
+                            <span class="university-badge">Popular</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Roadmap Preview -->
+            <div class="content-card roadmap-card">
+                <div class="card-header">
+                    <h2><i class="fas fa-map"></i> Your Roadmap</h2>
+                    <a href="roadmap.html" class="view-all">View Roadmap <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="card-body">
+                    <div class="roadmap-step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>Research & Choose</h4>
+                            <p>Explore universities and programs that match your goals.</p>
+                        </div>
+                    </div>
+
+                    <div class="roadmap-step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>Prepare Documents</h4>
+                            <p>Gather transcripts, recommendations, and personal statements.</p>
+                        </div>
+                    </div>
+
+                    <div class="roadmap-step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4>Apply & Track</h4>
+                            <p>Submit applications and monitor progress in real-time.</p>
+                        </div>
+                    </div>
+
+                    <div class="roadmap-step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h4>Get Accepted</h4>
+                            <p>Receive offers and choose your path to success.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Testimonials -->
+            <div class="content-card testimonials-card">
+                <div class="card-header">
+                    <h2><i class="fas fa-comments"></i> Student Stories</h2>
+                </div>
+                <div class="card-body">
+                    <div class="testimonial-item">
+                        <blockquote>"UNIGATE made applying to universities across Africa so simple. I got accepted to my dream program in Kenya!"</blockquote>
+                        <cite>— Sarah M., Rwanda</cite>
+                    </div>
+
+                    <div class="testimonial-item">
+                        <blockquote>"The virtual advisor helped me find scholarships I never knew existed. Now I'm studying in South Africa."</blockquote>
+                        <cite>— Ahmed K., Nigeria</cite>
+                    </div>
+
+                    <div class="testimonial-item">
+                        <blockquote>"From application to acceptance, UNIGATE guided me every step. Highly recommend to all African students."</blockquote>
+                        <cite>— Grace T., Uganda</cite>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- CTA Section -->
+        <div class="cta-section">
+            <div class="cta-content">
+                <h2>Ready to Start Your Journey?</h2>
+                <p>Join thousands of students who have successfully applied to African universities through UNIGATE.</p>
+                <div class="cta-actions">
+                    <a href="home.html" class="btn-primary">
+                        <i class="fas fa-rocket"></i>
+                        Start Application
+                    </a>
+                    <a href="roadmap.html" class="btn-secondary">
+                        <i class="fas fa-map"></i>
+                        View Roadmap
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div class="footer-grid">
+                <div class="footer-col">  
+                    <h4>UNIGATE</h4>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i id="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Twitter"><i id="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i id="fab fa-linkedin-in"></i></a>
+                        <a href="#" aria-label="Instagram"><i id="fab fa-instagram"></i></a>
+                    </div>
+                    <p>Empowering African students to achieve their dreams through simplified university applications.</p>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Platform</h4>
+                    <ul>
+                        <li><a href="university.html">Universities</a></li>
+                        <li><a href="roadmap.html">Roadmap</a></li>
+                        <li><a href="scholarships.html">Scholarships</a></li>
+                        <li><a href="resources.html">Resources</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="help.html">Help Center</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms of Service</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Newsletter</h4>
+                    <p>Stay updated with the latest opportunities and tips.</p>
+                    <div class="newsletter-form">
+                        <input type="email" placeholder="Your email" id="newsletterEmail">
+                        <button onclick="subscribeNewsletter()" class="btn-primary">Subscribe</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 UNIGATE. All rights reserved.</p>  
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="back-to-top" onclick="scrollToTop()">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script src="js/script.js"></script>
+    <script src="js/theme.js"></script>
+    <script src="js/profileMenu.js"></script>
+    <script src="js/siteNav.js" defer></script>
+
+</body>
+</html>

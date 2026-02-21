@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>University Information - UNIGAT</title>
+    <meta name="description" content="Explore detailed information about African universities including courses, campuses, scholarships, and application requirements. Find the perfect university for your academic journey.">
+    <meta name="keywords" content="university information, African universities, courses, scholarships, campuses, application requirements, UNIGAT">
+    <meta name="author" content="UNIGATE">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.unigate.org/university.html">
+    <meta property="og:title" content="University Information - UNIGAT">
+    <meta property="og:description" content="Explore detailed information about African universities including courses, campuses, scholarships, and application requirements.">
+    <meta property="og:image" content="https://www.unigate.org/logo.png">
+    <meta property="og:url" content="https://www.unigate.org/university.html">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="University Information - UNIGAT">
+    <meta name="twitter:description" content="Explore detailed information about African universities including courses, campuses, scholarships, and application requirements.">
+    <meta name="twitter:image" content="https://www.unigate.org/logo.png">
+    <link rel="icon" href="logo.png" type="image/png">
+    <link rel="apple-touch-icon" href="logo.png">
+    <meta name="theme-color" content="#4cb3ff">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/university.css">
+    <link rel="stylesheet" href="fontawesome-free-6.7.2-web/css/all.min.css">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "UNIGATE",
+      "url": "https://www.unigate.org/university.html",
+      "description": "University selection and application guide for African universities. Explore programs, compare institutions, and apply to universities across Africa with our comprehensive platform.",
+      "publisher": {
+        "@type": "Organization",
+        "name": "UNIGATE"
+      }
+    }
+    </script>
+</head>
+<body data-theme="dark">
+    <!-- Top Navigation Bar -->
+    <nav class="top-navbar">
+        <div class="navbar-container">
+            <div class="navbar-left">
+                <button class="sidebar-toggle" id="sidebarToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="brand-logo">
+                    <a href="index.html"><img src="LOGO.png" alt="UNIGAT Logo"></a>
+                    <span class="brand-name">UNIGATE</span>
+                </div>
+            </div>
+
+            <div class="navbar-center">
+                <ul class="nav-menu">
+                    <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li> 
+                    <li><a href="home.html"><i class="fas fa-rocket"></i> Apply</a></li>                   
+                    <li><a href="roadmap.html"><i class="fas fa-map"></i> Roadmap</a></li>
+                    <li><a href="university.html" class="active"><i class="fas fa-university"></i> Universities</a></li>
+                    <li><a href="student-dashboard.html"><i class="fas fa-chart-line"></i> Dashboard</a></li>
+                </ul>
+            </div>
+
+            <div class="navbar-right">
+                <button class="theme-toggle" id="themeToggle" title="Toggle Theme">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="notification-btn" title="Notifications">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-badge">1</span>
+                </button>
+                <div class="profile-menu">
+                    <img id="profileAvatar" src="LOGO.png" alt="Profile" class="profile-avatar">
+                    <span id="profileName" class="profile-name">Explore</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-nav-overlay" id="mobileNavOverlay"></div>
+    <div class="mobile-nav" id="mobileNav">
+        <div class="mobile-nav-header">
+            <h3>Menu</h3>
+            <button class="mobile-nav-close" id="mobileNavClose">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <ul class="mobile-nav-menu">
+            <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="home.html"><i class="fas fa-rocket"></i> Apply</a></li>
+            <li><a href="roadmap.html"><i class="fas fa-map"></i> Roadmap</a></li>
+            <li><a href="university.html" class="active"><i class="fas fa-university"></i> Universities</a></li>
+            <li><a href="student-dashboard.html"><i class="fas fa-chart-line"></i> Dashboard</a></li>
+            <li><a href="login.html"><i class="fas fa-sign-in-alt"></i> Login</a></li>
+        </ul>
+    </div>
+
+    <!-- Main Container -->
+    <div class="university-container">
+        <!-- Hero Section -->
+        <section class="hero-section" id="hero">
+            <div class="hero-background">
+                <div class="hero-overlay"></div>
+                <div class="hero-pattern"></div>
+            </div>
+            <div class="hero-content">                
+                <div class="university-hero">
+                    <h1 class="university-name" style="font-size: 2rem;">Explore African Universities</h1>
+                    <p class="hero-description">Discover top universities across Africa. Search and select a university to view detailed information about programs, requirements, and more.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Search Section -->
+        <section class="search-section">
+            <div class="search-container">
+                <div class="search-wrapper">
+                    <div class="search-input-wrapper">
+                        <input type="text" id="universitySearch" placeholder="Search universities..." aria-label="Search universities">
+                        <button id="searchBtn" aria-label="Search">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                    <div class="dropdown-container">
+                        <button class="dropdown-toggle" id="dropdownToggle">
+                            <span id="selectedUniversity">Select a University</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="dropdown-menu" id="universityDropdown">
+                            <!-- Universities will be populated here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- University Content (Initially Hidden) -->
+        <div class="university-content" id="universityContent" style="display: none;">
+            <!-- Hero Section -->
+            <section class="hero-section university-hero-section" id="universityHero">
+                <div class="hero-background">
+                    <div class="hero-overlay"></div>
+                    <div class="hero-pattern"></div>
+                </div>
+                <div class="hero-content">
+                    <a href="#" class="back-link" id="backToSearch">
+                        <i class="fas fa-arrow-left"></i>
+                        Back to Search
+                    </a>
+                    <div class="university-hero">
+                        <h1 class="university-name" id="universityName" style="font-size: 2rem;">Loading...</h1>
+                        <div class="university-meta">
+                            <span class="location" id="universityLocation"></span>
+                            <span class="established" id="universityEstablished"></span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Main Content -->
+            <main class="university-main">
+                <div class="content-wrapper">
+                    <!-- Left Content -->
+                    <div class="main-content">
+                        <!-- Quick Actions -->
+                        <div class="content-card quick-actions-card">
+                            <div class="card-header">
+                                <h2><i class="fas fa-bolt"></i> Quick Actions</h2>
+                            </div>
+                            <div class="card-body">
+                                <div class="action-buttons">
+                                    <button class="btn-primary start-application" id="startApplicationBtn">
+                                        <i class="fas fa-rocket"></i>
+                                        Start Application
+                                    </button>
+                                    <button class="btn-secondary subscribe-updates" id="subscribeUpdatesBtn">
+                                        <i class="fas fa-bell"></i>
+                                        Subscribe for Updates
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Available Courses -->
+                        <section class="content-card courses-section" id="courses">
+                            <div class="card-header">
+                                <h2><i class="fas fa-graduation-cap"></i> Available Courses</h2>
+                            </div>
+                            <div class="card-body">
+                                <div class="courses-grid" id="coursesList">
+                                    <!-- Courses will be loaded here -->
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- Campuses -->
+                        <section class="content-card campuses-section" id="campuses">
+                            <div class="card-header">
+                                <h2><i class="fas fa-map-marker-alt"></i> Campuses</h2>
+                            </div>
+                            <div class="card-body">
+                                <div class="campus-map-placeholder" id="campusMap">
+                                    <!-- Interactive map placeholder -->
+                                    <div class="map-placeholder-content">
+                                        <i class="fas fa-map-marked-alt"></i>
+                                        <h3>Campus Locations</h3>
+                                        <p>Interactive map integration ready. Add Leaflet.js or Google Maps API here.</p>
+                                    </div>
+                                </div>
+                                <div class="campus-list" id="campusList">
+                                    <!-- Campus info will be loaded here -->
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- Scholarships -->
+                        <section class="content-card scholarships-section" id="scholarships">
+                            <div class="card-header">
+                                <h2><i class="fas fa-dollar-sign"></i> Scholarships</h2>
+                            </div>
+                            <div class="card-body">
+                                <div class="scholarships-list" id="scholarshipsList">
+                                    <!-- Scholarships will be loaded here -->
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- Application Requirements -->
+                        <section class="content-card requirements-section" id="requirements">
+                            <div class="card-header">
+                                <h2><i class="fas fa-clipboard-list"></i> Application Requirements</h2>
+                            </div>
+                            <div class="card-body">
+                                <div class="requirements-list" id="requirementsList">
+                                    <!-- Requirements will be loaded here -->
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- Guidance & Advice -->
+                        <section class="content-card guidance-section" id="guidance">
+                            <div class="card-header">
+                                <h2><i class="fas fa-user-friends"></i> Guidance & Advice</h2>
+                            </div>
+                            <div class="card-body">
+                                <div class="advisors-list" id="advisorsList">
+                                    <!-- Advisor info and guidance will be loaded here -->
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- Subscribe Section -->
+                        <section class="content-card subscribe-section" id="subscribe">
+                            <div class="card-header">
+                                <h2><i class="fas fa-envelope"></i> Stay Updated</h2>
+                            </div>
+                            <div class="card-body">
+                                <p>Get the latest updates about admissions, deadlines, and events.</p>
+                                <form class="subscribe-form" id="subscribeForm">
+                                    <div class="form-group">
+                                        <input type="email" id="subscribeEmail" placeholder="Enter your email" required aria-label="Email address">
+                                        <button type="submit" class="btn-primary">
+                                            <i class="fas fa-paper-plane"></i>
+                                            Subscribe
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </section>
+                    </div>
+
+                    <!-- Right Sidebar -->
+                    <aside class="university-sidebar">
+                        <!-- University Stats -->
+                        <div class="sidebar-card stats-card">
+                            <div class="card-header">
+                                <h3><i class="fas fa-chart-bar"></i> University Stats</h3>
+                            </div>
+                            <div class="card-body">
+                                <div class="stat-item">
+                                    <div class="stat-number" data-target="15000">0</div>
+                                    <div class="stat-label">Students</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-number" data-target="98">0</div>
+                                    <div class="stat-label">Acceptance Rate (%)</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-number" data-target="500">0</div>
+                                    <div class="stat-label">Faculty Members</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-number" data-target="50">0</div>
+                                    <div class="stat-label">Countries Represented</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Quick Links -->
+                        <div class="sidebar-card quick-links-card">
+                            <div class="card-header">
+                                <h3><i class="fas fa-link"></i> Quick Links</h3>
+                            </div>
+                            <div class="card-body">
+                                <a href="#courses" class="quick-link">
+                                    <i class="fas fa-graduation-cap"></i>
+                                    View Courses
+                                </a>
+                                <a href="#campuses" class="quick-link">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    Campus Map
+                                </a>
+                                <a href="#scholarships" class="quick-link">
+                                    <i class="fas fa-dollar-sign"></i>
+                                    Scholarships
+                                </a>
+                                <a href="#requirements" class="quick-link">
+                                    <i class="fas fa-clipboard-list"></i>
+                                    Requirements
+                                </a>
+                                <a href="home.html" class="quick-link primary">
+                                    <i class="fas fa-rocket"></i>
+                                    Apply Now
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Contact Info -->
+                        <div class="sidebar-card contact-card">
+                            <div class="card-header">
+                                <h3><i class="fas fa-phone"></i> Contact</h3>
+                            </div>
+                            <div class="card-body">
+                                <div class="contact-item">
+                                    <i class="fas fa-envelope"></i>
+                                    <span id="universityEmail">admissions@university.edu</span>
+                                </div>
+                                <div class="contact-item">
+                                    <i class="fas fa-phone"></i>
+                                    <span id="universityPhone">+1 (555) 123-4567</span>
+                                </div>
+                                <div class="contact-item">
+                                    <i class="fas fa-globe"></i>
+                                    <span id="universityWebsite">www.university.edu</span>
+                                </div>
+                            </div>
+                        </div>
+                    </aside>
+                </div>
+            </main>
+        </div>
+
+        <!-- Loading Overlay -->
+        <div class="loading-overlay" id="loadingOverlay" style="display: none;">
+            <div class="loading-spinner">
+                <i class="fas fa-spinner fa-spin"></i>
+                <p>Loading university information...</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Toast Notifications -->
+    <div class="toast-container" id="toastContainer" aria-live="polite" aria-atomic="true"></div>
+
+    <script src="js/university.js"></script>
+    <script src="js/theme.js"></script>
+    <script src="js/profileMenu.js"></script>
+</body>
+</html>

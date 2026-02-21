@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Admin — Logs</title>
+<link rel="stylesheet" href="../css/admin.css">
+</head>
+<body>
+  <main class="admin-main" style="padding:20px">
+    <h2>System Logs</h2>
+    <div style="margin-bottom:12px"><input id="logFilter" placeholder="source or level" style="padding:8px"><button id="logSearch" class="btn">Search</button></div>
+    <table id="logsTable" class="table"><thead><tr><th>Time</th><th>Level</th><th>Source</th><th>Message</th></tr></thead><tbody></tbody></table>
+  </main>
+
+<script>
+async function fetchLogs(){
+  const f = document.getElementById('logFilter').value.trim();
+  const url = '/api/logs?source='+encodeURIComponent(f);
+  const res = await fetch(url, { headers:{ 'Authorization':'Bearer '+localStorage.getItem('token') }});
+  const j = await res.json();
+  const tbody = document.querySelector('#logsTable tbody'); tbody.innerHTML = '';
+  (j.rows||[]).forEach(l=>{
+    const tr = document.createElement('tr');
+    tr.innerHTML = `<td>${new Date(l.createdAt).toLocaleString()}</td><td>${l.level}</td><td>${l.source}</td><td>${l.message}</td>`;
+    tbody.appendChild(tr);
+  });
+}
+
+document.addEventListener('DOMContentLoaded', ()=>{
+  document.getElementById('logSearch').addEventListener('click', fetchLogs);
+  fetchLogs();
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,4 @@
+- [ ] Edit first-year.html to match home.html structure (header, main.hero.panel, footer)
+- [ ] Edit transfer.html to match home.html structure
+- [ ] Edit parent.html to match home.html structure
+- [ ] Edit login.html to match home.html structure

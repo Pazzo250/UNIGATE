@@ -1,0 +1,225 @@
+/* Dropdown Menus */
+.profile-menu {
+display: flex;
+align-items: center;
+gap: 8px;
+cursor: pointer;
+position: relative;
+}
+
+
+.profile-avatar {
+width: 32px;
+height: 32px;
+border-radius: 50%;
+}
+
+
+.profile-dropdown {
+position: absolute;
+top: 60px;
+right: 0;
+background: #1e1e2f;
+border-radius: 8px;
+padding: 10px 0;
+width: 150px;
+box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+display: none;
+z-index: 999;
+}
+
+
+.profile-dropdown .dropdown-item {
+display: block;
+padding: 10px 15px;
+color: #fff;
+text-decoration: none;
+font-size: 14px;
+}
+
+
+.profile-dropdown .dropdown-item:hover {
+background: #2d2d44;
+}
+
+
+/* Toggle visible */
+.profile-dropdown.show {
+display: block;
+}
+
+/* A POP UP MODAL FOR CONFIRMATION DIALOGS */
+
+.auth-popup {
+padding: 20px;
+overflow-y: auto;
+}
+
+
+.auth-popup.show {
+display: flex;
+}
+
+
+.auth-popup-content {
+background: white;
+border-radius: 12px;
+width: 100%;
+max-width: 420px;
+padding: 25px;
+animation: popupFade 0.25s ease-out;
+}
+
+
+@keyframes popupFade {
+from { transform: scale(0.9); opacity: 0; }
+to { transform: scale(1); opacity: 1; }
+}
+
+
+.auth-header {
+display: flex;
+justify-content: space-between;
+align-items: center;
+margin-bottom: 20px;
+}
+
+
+.close-btn {
+font-size: 26px;
+cursor: pointer;
+}
+
+
+.auth-role-title {
+text-align: center;
+margin-bottom: 20px;
+font-weight: bold;
+}
+
+
+.auth-btn {
+display: block;
+width: 100%;
+padding: 14px;
+background: #0066cc;
+border: none;
+color: white;
+border-radius: 30px;
+margin-bottom: 15px;
+font-size: 15px;
+cursor: pointer;
+transition: 0.2s;
+}
+
+
+.auth-btn:hover {
+background: #004c99;
+}
+
+
+.no-account {
+text-align: center;
+margin-top: 10px;
+}
+
+
+.create-link {
+display: block;
+text-align: center;
+margin-top: 5px;
+font-weight: bold;
+color: #000;
+}
+
+.auth-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.6);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+    padding: 20px;
+}
+
+.auth-popup.show {
+    display: flex;
+}
+
+.auth-popup-content {
+    background: white;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 420px;
+    padding: 25px;
+    animation: popupFade 0.25s ease-out;
+}
+
+/* Popup overlay */
+.auth-popup {
+  position: fixed;
+  inset: 0;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0,0,0,0.6);
+  z-index: 10000;
+}
+.auth-popup.show { display: flex; }
+
+/* Popup box */
+.auth-popup-content {
+  width: 360px;
+  max-width: calc(100% - 32px);
+  background: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  position: relative;
+  animation: popupIn .18s ease-out;
+}
+
+/* Header */
+.auth-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; }
+.auth-header h2 { margin:0; font-size:18px; }
+.close-btn { background: transparent; border: none; font-size: 22px; cursor: pointer; }
+
+/* Screens */
+.auth-screen { display: none; }
+.auth-screen.active { display: block; }
+
+/* Role buttons */
+.roles { display:flex; gap:10px; margin:10px 0 14px; }
+.auth-btn { flex:1; padding:10px; border:none; border-radius:6px; cursor:pointer; background:#007bff; color:#fff; }
+.auth-btn:hover { background:#0056c5; }
+
+/* Form */
+.login-form input {
+  width:100%; padding:10px; border-radius:6px; border:1px solid #ccc; margin:8px 0; box-sizing:border-box;
+}
+.submit-btn {
+  width:100%; padding:10px; margin-top:6px; border:none; border-radius:6px;
+  background:#28a745; color:#fff; cursor:pointer;
+}
+.submit-btn:hover { opacity:0.95; }
+
+/* Back button */
+.link-btn { margin-top:10px; background:transparent; border:none; color:#007bff; cursor:pointer; }
+
+/* Other text */
+.no-account { margin-top:12px; }
+.create-link { color:#333; text-decoration:none; font-weight:600; }
+
+/* Error */
+.error { color:#c00; margin-top:8px; }
+
+/* Animation */
+@keyframes popupIn { from { transform: translateY(-6px) scale(.995); opacity: 0;} to { transform: translateY(0) scale(1); opacity: 1;} }
+
+/* Accessibility */
+.sr-only { position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden; }
+
+

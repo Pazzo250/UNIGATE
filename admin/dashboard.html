@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Super Admin — UNIGATE Dashboard</title>
+  <link rel="stylesheet" href="../css/admin.css">
+  <link rel="stylesheet" href="../fontawesome-free-6.7.2-web/css/all.min.css">
+</head>
+<body data-theme="dark">
+  <div id="adminApp" class="admin-app">
+    <!-- Sidebar -->
+    <aside class="admin-sidebar" id="sidebar">
+      <div class="brand">
+        <img src="../LOGO.png" alt="UNIGATE" class="brand-logo">
+        <h2>UNIGATE Admin</h2>
+      </div>
+
+      <nav class="menu">
+        <ul>
+          <li class="menu-section">Overview</li>
+          <li><a href="admin/dashboard.html" data-section="overview" class="active"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+          <li class="menu-section">Management</li>
+          <!-- Users: direct link to Roles UI (dedicated page) and in-dashboard Users section -->
+          <li><a href="admin/roles.html"><i class="fas fa-user-shield"></i> Roles & Permissions</a></li>
+          <li><a href="#" data-section="users"><i class="fas fa-users"></i> Users (in-dashboard)</a></li>
+          <li><a href="#" data-section="universities"><i class="fas fa-university"></i> Universities</a></li>
+          <li><a href="#" data-section="applications"><i class="fas fa-file-alt"></i> Applications</a></li>
+          <!-- Payments has a dedicated admin page -->
+          <li><a href="admin/payments.html"><i class="fas fa-credit-card"></i> Payments</a></li>
+          <li class="menu-section">Platform</li>
+          <!-- CMS has dedicated page -->
+          <li><a href="admin/cms.html"><i class="fas fa-newspaper"></i> CMS</a></li>
+          <!-- Analytics, Logs, Support, Audit, Tickets have dedicated admin pages -->
+          <li><a href="admin/analytics.html"><i class="fas fa-chart-line"></i> Analytics</a></li>
+          <li><a href="admin/logs.html"><i class="fas fa-server"></i> Logs & Monitoring</a></li>
+          <li><a href="admin/tickets.html"><i class="fas fa-life-ring"></i> Support / Tickets</a></li>
+          <li><a href="admin/audit.html"><i class="fas fa-clipboard-list"></i> Audit Logs</a></li>
+          <li class="menu-footer"><a href="#" id="signOutBtn"><i class="fas fa-sign-out-alt"></i> Sign Out</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <!-- Main content -->
+    <main class="admin-main">
+      <header class="admin-topbar">
+        <button id="sidebarToggle" class="icon-btn"><i class="fas fa-bars"></i></button>
+        <div class="topbar-actions">
+          <button id="themeToggle" class="icon-btn" title="Toggle theme"><i class="fas fa-moon"></i></button>
+          <div class="admin-profile">
+            <img id="adminAvatar" src="../LOGO.png" alt="Profile">
+            <div class="admin-info">
+              <div id="adminName">Super Admin</div>
+              <small id="adminRole">super_admin</small>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <section class="admin-content" id="content">
+        <!-- Overview / Dashboard -->
+        <div id="overviewSection" class="section active">
+          <div class="kpi-grid">
+            <div class="kpi-card"><h3 id="kpiUsers">—</h3><p>Users</p></div>
+            <div class="kpi-card"><h3 id="kpiUnis">—</h3><p>Universities</p></div>
+            <div class="kpi-card"><h3 id="kpiApps">—</h3><p>Applications</p></div>
+            <div class="kpi-card"><h3 id="kpiRevenue">—</h3><p>Revenue</p></div>
+          </div>
+
+          <div class="panels">
+            <div class="panel">
+              <div class="panel-header">
+                <h4>Recent Applications</h4>
+                <div class="panel-actions"><input id="searchApps" placeholder="Search applications..."></div>
+              </div>
+              <div class="panel-body">
+                <table id="appsTable" class="table">
+                  <thead><tr><th>App ID</th><th>Applicant</th><th>University</th><th>Program</th><th>Status</th><th>Actions</th></tr></thead>
+                  <tbody><!-- populated by JS --></tbody>
+                </table>
+              </div>
+            </div>
+
+            <div class="panel small">
+              <div class="panel-header"><h4>Quick Actions</h4></div>
+              <div class="panel-body">
+                <button class="btn" id="createUserBtn"><i class="fas fa-user-plus"></i> Create User</button>
+                <button class="btn" id="addUniversityBtn"><i class="fas fa-university"></i> Add University</button>
+                <button class="btn" id="sendAnnouncementBtn"><i class="fas fa-bullhorn"></i> Announce</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Placeholder sections for each module -->
+        <div id="usersSection" class="section">
+          <h3>Users & Roles</h3>
+          <div class="panel">
+            <div class="panel-body">
+              <table id="usersTable" class="table">
+                <thead><tr><th>User</th><th>Email</th><th>Role</th><th>Status</th><th>Actions</th></tr></thead>
+                <tbody><!-- JS populated --></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div id="universitiesSection" class="section">
+          <h3>Universities</h3>
+          <div class="panel">
+            <div class="panel-body">
+              <table id="unisTable" class="table">
+                <thead><tr><th>University</th><th>Country</th><th>Programs</th><th>Verified</th><th>Actions</th></tr></thead>
+                <tbody><!-- JS populated --></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Additional section placeholders (applications, payments, analytics, cms, logs, support) -->
+        <div id="applicationsSection" class="section"><h3>Applications</h3><p>Module placeholder — API driven listing, status transition, assign reviewer.</p></div>
+        <div id="paymentsSection" class="section"><h3>Payments & Finance</h3><p>Module placeholder — payments ledger, refunds, analytics.</p></div>
+        <div id="analyticsSection" class="section"><h3>Analytics</h3><p>Graphs and KPIs (real-time streams) — placeholders for charts (Chart.js / Recharts).</p></div>
+        <div id="cmsSection" class="section"><h3>CMS</h3><p>Homepage, blog, FAQ management UIs here.</p></div>
+        <div id="logsSection" class="section"><h3>Logs & Monitoring</h3><p>Error logs and server health monitoring.</p></div>
+        <div id="supportSection" class="section"><h3>Support & Ticketing</h3><p>Ticket listing, assign, automation.</p></div>
+
+      </section>
+    </main>
+  </div>
+
+  <script src="../js/admin.js" defer></script>
+</body>
+</html>

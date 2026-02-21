@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Admin — Analytics</title>
+<link rel="stylesheet" href="../css/admin.css">
+</head>
+<body>
+  <main class="admin-main" style="padding:20px">
+    <h2>Analytics Overview</h2>
+    <div id="kpis" style="display:flex;gap:12px;margin-bottom:12px"></div>
+    <div id="topUnis"></div>
+  </main>
+
+<script>
+async function loadOverview(){
+  const res = await fetch('/api/analytics/overview', { headers:{ 'Authorization':'Bearer '+localStorage.getItem('token') }});
+  const j = await res.json();
+  document.getElementById('kpis').innerHTML = `
+    <div class="kpi-card"><h3>${j.users}</h3><p>Users</p></div>
+    <div class="kpi-card"><h3>${j.universities}</h3><p>Universities</p></div>
+    <div class="kpi-card"><h3>${j.applications}</h3><p>Applications</p></div>
+    <div class="kpi-card"><h3>${j.revenue}</h3><p>Revenue</p></div>
+  `;
+  document.getElementById('topUnis').innerHTML = '<h3>Top Universities</h3><pre>'+JSON.stringify(j.topUniversities,null,2)+'</pre>';
+}
+
+document.addEventListener('DOMContentLoaded', ()=> loadOverview());
+</script>
+</body>
+</html>

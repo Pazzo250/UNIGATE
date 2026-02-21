@@ -1,0 +1,273 @@
+/* ============================================================
+   GLOBAL VARIABLES — LIGHT + DARK MODE
+============================================================ */
+:root {
+  --bg: #f6f7fb;
+  --card-bg: #ffffff;
+  --text: #1a1a1a;
+  --muted: #6b6b6b;
+  --border: #dcdcdc;
+  --accent-1: #0059ff;
+  --accent-1-hover: #0041cc;
+  --radius: 14px;
+  --transition: .25s ease;
+  --shadow-1: 0 4px 14px rgba(0,0,0,.08);
+  --shadow-2: 0 6px 20px rgba(0,0,0,.15);
+}
+
+/* AUTO DARK MODE */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0f1115;
+    --card-bg: #1a1d24;
+    --text: #e9e9e9;
+    --muted: #a8a8a8;
+    --border: #2c2e33;
+    --accent-1: #4d8dff;
+    --accent-1-hover: #3a6bcc;
+    --shadow-1: 0 6px 18px rgba(0,0,0,.7);
+  }
+}
+
+/* ============================================================
+   GLOBAL RESET & BASE
+============================================================ */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Inter", system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+}
+
+/* ============================================================
+   HEADER
+============================================================ */
+.site-header {
+  width: 100%;
+  padding: 14px 0;
+  background: var(--card-bg);
+  box-shadow: var(--shadow-1);
+  position: sticky;
+  top: 0;
+  z-index: 30;
+}
+
+.header-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.container {
+  width: min(1200px, 92%);
+  margin: auto;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.brand .logo-blob img {
+  width: 48px;
+  height: 48px;
+  border-radius: 10px;
+}
+
+.brand-text .brand-name {
+  font-size: 20px;
+  font-weight: 700;
+}
+.brand-text .brand-sub {
+  font-size: 13px;
+  margin-top: -4px;
+  opacity: .7;
+}
+
+.profile-menu {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.profile-menu img {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+}
+
+/* ============================================================
+   PAGE LAYOUT
+============================================================ */
+.form-page {
+  display: flex;
+  justify-content: center;
+  padding: 40px 20px;
+  animation: fadeIn .6s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Card */
+.form-card {
+  background: var(--card-bg);
+  width: 100%;
+  max-width: 430px;
+  padding: 32px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-2);
+  animation: popIn .45s ease;
+}
+
+@keyframes popIn {
+  from { transform: scale(.96); opacity: 0; }
+  to   { transform: scale(1); opacity: 1; }
+}
+
+.form-card h1 {
+  margin-bottom: 20px;
+  font-size: 28px;
+}
+
+/* ============================================================
+   GOOGLE BUTTON
+============================================================ */
+.btn-google {
+  width: 100%;
+  padding: 12px;
+  border-radius: var(--radius);
+  background: #ffffff;
+  border: 1px solid var(--border);
+  font-size: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  transition: var(--transition);
+  box-shadow: var(--shadow-1);
+}
+
+.btn-google:hover {
+  background: #f0f2f5;
+  transform: translateY(-2px);
+}
+
+/* ============================================================
+   FORM FIELDS
+============================================================ */
+form {
+  margin-top: 16px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 18px;
+}
+
+.label-text {
+  font-size: 14px;
+  margin-bottom: 4px;
+  color: var(--muted);
+}
+
+input {
+  padding: 12px;
+  font-size: 15px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  transition: var(--transition);
+  background: var(--card-bg);
+  color: var(--text);
+}
+
+input:focus {
+  border-color: var(--accent-1);
+  box-shadow: 0 0 0 3px rgba(0,89,255,.25);
+  outline: none;
+}
+
+/* ============================================================
+   SUBMIT BUTTON
+============================================================ */
+.submit {
+  width: 100%;
+  padding: 12px;
+  margin-top: 6px;
+  border: none;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: var(--radius);
+  cursor: pointer;
+  background: var(--accent-1);
+  color: #fff;
+  transition: var(--transition);
+}
+
+.submit:hover {
+  background: var(--accent-1-hover);
+  transform: translateY(-2px);
+}
+
+.submit:active {
+  transform: scale(.98);
+}
+
+/* ============================================================
+   ERROR MESSAGE
+============================================================ */
+#errorMsg {
+  min-height: 20px;
+  margin-bottom: 6px;
+  font-size: 14px;
+}
+
+/* ============================================================
+   LINKS
+============================================================ */
+a {
+  color: var(--accent-1);
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+a:hover {
+  color: var(--accent-1-hover);
+  text-decoration: underline;
+}
+
+/* ============================================================
+   RESPONSIVE
+============================================================ */
+@media (max-width: 480px) {
+  .form-card {
+    padding: 24px;
+  }
+
+  .btn-google {
+    font-size: 14px;
+  }
+
+  input {
+    font-size: 14px;
+  }
+
+  .submit {
+    font-size: 15px;
+  }
+}
+/* ============================================================
+   END OF FILE

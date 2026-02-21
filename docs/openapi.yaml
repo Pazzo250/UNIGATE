@@ -1,0 +1,202 @@
+openapi: 3.0.0
+info:
+  title: UNIGATE Admin API
+  version: 1.1.0
+servers:
+  - url: http://localhost:3000/api
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        id: { type: string, format: uuid }
+        email: { type: string, format: email }
+        name: { type: string }
+        role: { type: string }
+        status: { type: string }
+        createdAt: { type: string, format: date-time }
+    University:
+      type: object
+      properties:
+        id: { type: string, format: uuid }
+        name: { type: string }
+        country: { type: string }
+        city: { type: string }
+        verified: { type: boolean }
+        meta: { type: object }
+        createdAt: { type: string, format: date-time }
+    Application:
+      type: object
+      properties:
+        id: { type: string }
+        applicantId: { type: string }
+        universityId: { type: string }
+        program: { type: string }
+        status: { type: string }
+        assignedReviewer: { type: string }
+        documents: { type: array, items: { type: object } }
+        fraudFlag: { type: boolean }
+        score: { type: number }
+        createdAt: { type: string, format: date-time }
+    Payment:
+      type: object
+      properties:
+        id: { type: string }
+        userId: { type: string }
+        applicationId: { type: string }
+        amount: { type: number }
+        currency: { type: string }
+        provider: { type: string }
+        providerTxnId: { type: string }
+        status: { type: string }
+        meta: { type: object }
+        createdAt: { type: string, format: date-time }
+    Ticket:
+      type: object
+      properties:
+        id: { type: string }
+        userId: { type: string }
+        subject: { type: string }
+        messages: { type: array, items: { type: object } }
+        status: { type: string }
+        priority: { type: string }
+        assignedTo: { type: string }
+        createdAt: { type: string, format: date-time }
+    Audit:
+      type: object
+      properties:
+        id: { type: string }
+        actorId: { type: string }
+        actorEmail: { type: string }
+        action: { type: string }
+        targetType: { type: string }
+        targetId: { type: string }
+        details: { type: object }
+        createdAt: { type: string, format: date-time }
+
+paths:
+  /auth/login:
+    post:
+      summary: Login
+      requestBody:
+        required: true
+        content: { application/json: { schema: { type: object, properties: { email: { type: string }, password: { type: string } } } } }
+      responses:
+        '200': { description: OK, content: { application/json: { schema: { type: object, properties: { token: { type: string }, user: { $ref: '#/components/schemas/User' } } } } } }
+
+  /users:
+    get:
+      summary: List users
+      parameters:
+        - in: query; name: q; schema: { type: string }
+        - in: query; name: role; schema: { type: string }
+        - in: query; name: page; schema: { type: integer }
+      responses: { '200': { description: OK, content: { application/json: { schema: { type: object, properties: { total: { type: integer }, rows: { type: array, items: { $ref: '#/components/schemas/User' } } } } } } } }
+    post:
+      summary: Create user
+      requestBody: { required: true, content: { application/json: { schema: { type: object, properties: { email: { type: string }, password: { type: string }, name: { type: string }, role: { type: string } } } } } }
+      responses: { '201': { description: Created, content: { application/json: { schema: { $ref: '#/components/schemas/User' } } } } }
+
+  /universities:
+    get:
+      summary: List universities
+      responses: { '200': { description: OK, content: { application/json: { schema: { type: object } } } } }
+    post:
+      summary: Create university
+      requestBody: { content: { application/json: { schema: { $ref: '#/components/schemas/University' } } } }
+      responses: { '201': { description: Created, content: { application/json: { schema: { $ref: '#/components/schemas/University' } } } } }
+
+  /applications:
+    get:
+      summary: List applications
+      responses: { '200': { description: OK } }
+
+  /applications/{id}/status:
+    patch:
+      summary: Change application status
+      requestBody: { content: { application/json: { schema: { type: object, properties: { status: { type: string } } } } } }
+      responses: { '200': { description: OK } }
+
+  /payments:
+    get:
+      summary: List payments
+      responses: { '200': { description: OK, content: { application/json: { schema: { type: object } } } } }
+    post:
+      summary: Create payment
+      requestBody: { content: { application/json: { schema: { $ref: '#/components/schemas/Payment' } } } }
+      responses: { '201': { description: Created } }
+
+  /payments/{id}/verify:
+    post:
+      summary: Verify payment
+      requestBody: { content: { application/json: { schema: { type: object, properties: { providerTxnId: { type: string }, status: { type: string } } } } } }
+      responses: { '200': { description: OK } }
+
+  /payments/reconcile:
+    post:
+      summary: Reconcile payments and optionally export CSV
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                start: { type: string, format: date-time }
+                end: { type: string, format: date-time }
+                export: { type: string, enum: ['csv','json'] }
+      responses:
+        '200':
+          description: Reconciliation result or CSV file
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  total: { type: number }
+                  count: { type: integer }
+                  rows: { type: array, items: { $ref: '#/components/schemas/Payment' } }
+            text/csv:
+              schema:
+                type: string
+                format: binary
+
+  /tickets:
+    get:
+      summary: List tickets
+      responses: { '200': { description: OK } }
+    post:
+      summary: Create ticket
+      requestBody: { content: { application/json: { schema: { $ref: '#/components/schemas/Ticket' } } } }
+      responses: { '201': { description: Created } }
+
+  /audit:
+    get:
+      summary: List audit logs and export csv
+      parameters:
+        - in: query; name: actorEmail; schema: { type: string }
+        - in: query; name: action; schema: { type: string }
+        - in: query; name: start; schema: { type: string, format: date-time }
+        - in: query; name: end; schema: { type: string, format: date-time }
+        - in: query; name: export; schema: { type: string, enum: ['csv'] }
+      responses:
+        '200':
+          description: OK or CSV
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  total: { type: integer }
+                  rows: { type: array, items: { $ref: '#/components/schemas/Audit' } }
+            text/csv:
+              schema:
+                type: string
+                format: binary
+security:
+  - bearerAuth: []
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

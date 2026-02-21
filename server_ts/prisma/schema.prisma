@@ -1,0 +1,76 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           Int      @id @default(autoincrement())
+  email        String   @unique
+  password     String
+  name         String?
+  role         String   @default("user")
+  refreshToken String?  
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model University {
+  id        Int      @id @default(autoincrement())
+  name      String
+  slug      String   @unique
+  createdAt DateTime @default(now())
+}
+
+model Application {
+  id           Int      @id @default(autoincrement())
+  applicantId  Int
+  universityId Int
+  program      String
+  status       String   @default("pending")
+  createdAt    DateTime @default(now())
+}
+
+model Payment {
+  id          Int      @id @default(autoincrement())
+  application Int?
+  amount      Float
+  providerId  String?
+  status      String   @default("pending")
+  createdAt   DateTime @default(now())
+}
+
+model Ticket {
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  subject   String
+  body      String
+  status    String   @default("open")
+  createdAt DateTime @default(now())
+}
+
+model Audit {
+  id        Int      @id @default(autoincrement())
+  actor     String
+  action    String
+  details   String?
+  createdAt DateTime @default(now())
+}
+
+model RolePermission {
+  id         Int    @id @default(autoincrement())
+  role       String
+  permission String
+}
+
+model RefreshToken {
+  id        String   @id @default(uuid())
+  tokenHash String
+  userId    Int
+  revoked   Boolean  @default(false)
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id])
+}

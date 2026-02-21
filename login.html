@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Login — UNIGATE</title>
+  <link rel="stylesheet" href="css/login.css">
+  <link rel="stylesheet" href="css/siteNav.css">
+  <link rel="stylesheet" href="fontawesome-free-6.7.2-web/css/all.min.css">
+  <script defer src="js/login.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner container">
+      <div class="brand">
+        <div class="logo-blob"><img src="LOGO.png" alt="UNIGATE"></div>
+        <div class="brand-text" aria-hidden="true">
+          <div class="brand-name">UNIGATE</div>
+          <div class="brand-sub">Apply to African Universities</div>
+        </div>
+      </div>
+      <div class="profile-menu">
+        <img id="profileAvatar" src="fontawesome-free-6.7.2-web/svgs/solid/user.svg" alt="Profile" />
+        <span id="profileName">Welcome</span>
+      </div>
+    </div>
+  </header>
+
+  <nav class="top-nav" aria-label="Main navigation" style="background:var(--bg);border-bottom:1px solid rgba(255,255,255,0.03);">
+    <div class="container" style="display:flex;gap:12px;align-items:center;padding:10px;">
+      <a href="index.html" class="nav-link"><i class="fas fa-home"></i> Home</a>
+      <a href="home.html" class="nav-link"><i class="fas fa-rocket"></i> Apply</a>
+      <a href="roadmap.html" class="nav-link"><i class="fas fa-map"></i> Roadmap</a>
+      <a href="university.html" class="nav-link"><i class="fas fa-university"></i> Universities</a>
+      <a href="student-dashboard.html" class="nav-link"><i class="fas fa-chart-line"></i> Dashboard</a>
+    </div>
+  </nav>
+
+  <main class="form-page">
+    <div class="form-card">
+      <h1>Log in</h1>
+
+      <button id="googleLogin" class="btn-google">
+        <i class="fab fa-google"></i> Log in with Google
+      </button>
+      <!-- Google OAuth is not configured on the server by default. Disable to avoid broken redirect. -->
+      <script>
+        (function(){ const b = document.getElementById('googleLogin'); if(b){ b.disabled = true; b.setAttribute('title','Google sign-in not configured on this instance'); b.classList.add('disabled'); } })();
+      </script>
+      <p style="margin:8px 0 16px;color:var(--muted)">or log in using your email and password.</p>
+
+      <form id="mainLoginForm">
+        <label class="field">
+          <span class="label-text">Email address *</span>
+          <input type="email" id="mainLoginEmail" required>
+        </label>
+        <label class="field">
+          <span class="label-text">Password *</span>
+          <input type="password" id="mainLoginPassword" required>
+        </label>
+        <p id="mainErrorMsg" style="color:#c00"></p>
+        <button class="submit" type="submit">Log in</button>
+        <p style="margin:8px 0 16px;color:var(--muted);font-size:12px">
+          💡 Demo: admin@unigate.local / SuperAdmin123! (super_admin role)
+        </p>
+        <p style="margin:8px 0 16px;color:var(--muted)">
+          Don't have an account? <a href="firstyear_signup.html" style="color:var(--accent-1);font-weight:700">Create one here</a>.
+        </p>
+      </form>
+    </div>
+  </main>
+
+  <footer class="site-footer" style="padding:18px 12px;background:transparent;border-top:1px solid rgba(255,255,255,0.03);color:var(--muted);margin-top:24px;">
+    <div class="container" style="display:flex;flex-wrap:wrap;gap:12px;align-items:center;">
+      <div style="flex:1">
+        <strong>UNIGATE</strong> — Apply to multiple African universities.
+      </div>
+      <div style="display:flex;gap:12px;align-items:center">
+        <a href="help.html" style="color:inherit">Help</a>
+        <a href="contact.html" style="color:inherit">Contact</a>
+        <a href="privacy.html" style="color:inherit">Privacy</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- small note: backend server runs at /api by default; ensure server is running -->
+  <script src="js/theme.js"></script>
+  <script src="js/siteNav.js" defer></script>
+
+</body>
+</html>

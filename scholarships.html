@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scholarships - UNIGATE</title>
+    <meta name="description" content="Discover scholarships and financial aid opportunities for African university students.">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/scholarships.css">
+    <link rel="stylesheet" href="fontawesome-free-6.7.2-web/css/all.min.css">
+    <link rel="icon" href="LOGO.png" type="image/png">
+</head>
+<body data-theme="dark">
+
+    <!-- Top Navigation Bar -->
+    <nav class="top-navbar">
+        <div class="navbar-container">
+            <div class="navbar-left">
+                <button class="sidebar-toggle" id="sidebarToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="brand-logo">
+                    <a href="index.html"><img src="LOGO.png" alt="UNIGAT Logo"></a>
+                    <span class="brand-name">UNIGATE</span>
+                </div>
+            </div>
+
+            <div class="navbar-center">
+                <ul class="nav-menu">
+                    <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="roadmap.html"><i class="fas fa-map"></i> Roadmap</a></li>
+                    <li><a href="university.html"><i class="fas fa-university"></i> Universities</a></li>
+                    <li><a href="student-dashboard.html"><i class="fas fa-chart-line"></i> Dashboard</a></li>
+                </ul>
+            </div>
+
+            <div class="navbar-right">
+                <button class="theme-toggle" id="themeToggle" title="Toggle Theme">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="notification-btn" title="Notifications">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-badge">2</span>
+                </button>
+               <div class="profile-menu">
+                    <img id="profileAvatar" src="LOGO.png" alt="Profile" class="profile-avatar">
+                    <span id="profileName" class="profile-name">Welcome</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->   
+    <div class="mobile-nav-overlay" id="mobileNavOverlay"></div> 
+    <div class="mobile-nav" id="mobileNav">
+        <div class="mobile-nav-header">
+            <h3>Menu</h3>
+            <button class="mobile-nav-close" id="mobileNavClose">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <ul class="mobile-nav-menu">
+            <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="home.html"><i class="fas fa-rocket"></i> Apply</a></li>
+            <li><a href="roadmap.html"><i class="fas fa-map"></i> Roadmap</a></li>
+            <li><a href="university.html"><i class="fas fa-university"></i> Universities</a></li>
+            <li><a href="student-dashboard.html"><i class="fas fa-chart-line"></i> Dashboard</a></li>
+            <li><a href="login.html"><i class="fas fa-sign-in-alt"></i> Login</a></li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <main>
+
+        <!-- Scholarships Hero -->
+        <div class="scholarships-hero">
+            <div class="scholarships-hero-content">
+                <h1><i class="fas fa-graduation-cap"></i> Scholarships & Financial Aid</h1>
+                <p>Discover funding opportunities to make your university dreams a reality. We help you find the perfect scholarships for your education.</p>
+                <div class="scholarships-stats">
+                    <div class="stat-item">
+                        <span class="stat-number">$2.5M+</span>
+                        <span class="stat-label">Available in Aid</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">500+</span>
+                        <span class="stat-label">Scholarship Programs</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">85%</span>
+                        <span class="stat-label">Success Rate</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scholarship Search -->
+        <div class="scholarship-search">
+            <div class="search-container">
+                <h2>Find Your Scholarship</h2>
+                <div class="search-filters">
+                    <div class="filter-group search-input-group">
+                        <label for="scholarshipSearch">Search Scholarships</label>
+                        <input type="text" id="scholarshipSearch" placeholder="Enter keywords, university, or scholarship name">
+                    </div>
+
+                    <div class="filter-group">
+                        <label for="scholarshipCountry">Country</label>
+                        <select id="scholarshipCountry" class="filter-select">
+                            <option value="">All Countries</option>
+                            <option value="kenya">Kenya</option>
+                            <option value="south-africa">South Africa</option>
+                            <option value="ghana">Ghana</option>
+                            <option value="nigeria">Nigeria</option>
+                            <option value="uganda">Uganda</option>
+                        </select>
+                    </div>
+
+                    <div class="filter-group">
+                        <label for="scholarshipLevel">Study Level</label>
+                        <select id="scholarshipLevel" class="filter-select">
+                            <option value="">All Levels</option>
+                            <option value="undergraduate">Undergraduate</option>
+                            <option value="masters">Master's</option>
+                            <option value="phd">PhD</option>
+                        </select>
+                    </div>
+
+                    <div class="filter-group">
+                        <label for="scholarshipField">Field of Study</label>
+                        <select id="scholarshipField" class="filter-select">
+                            <option value="">All Fields</option>
+                            <option value="stem">STEM</option>
+                            <option value="business">Business</option>
+                            <option value="medicine">Medicine</option>
+                            <option value="arts">Arts & Humanities</option>
+                        </select>
+                    </div>
+
+                    <div class="filter-group">
+                        <button class="btn-primary search-btn" onclick="searchScholarships()">
+                            <i class="fas fa-search"></i>
+                            Search Scholarships
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Featured Scholarships -->
+        <div class="featured-scholarships">
+            <h2>Featured Scholarships</h2><br>
+            <div class="scholarships-grid">
+
+                <div class="scholarship-card">
+                    <div class="scholarship-header">
+                        <div class="scholarship-amount">$25,000</div>
+                        <div class="scholarship-badge">Full Funding</div>
+                    </div>
+                    <div class="scholarship-content">
+                        <h3>African Excellence Scholarship</h3>
+                        <p class="scholarship-provider">University of Nairobi</p>
+                        <p class="scholarship-description">Comprehensive scholarship for outstanding African students pursuing undergraduate studies in Kenya.</p>
+                        <div class="scholarship-details">
+                            <span><i class="fas fa-map-marker-alt"></i> Kenya</span>
+                            <span><i class="fas fa-graduation-cap"></i> Undergraduate</span>
+                            <span><i class="fas fa-calendar"></i> Deadline: March 15, 2025</span>
+                        </div>
+                        <button class="btn-primary" onclick="applyForScholarship('african-excellence')">
+                            Apply Now
+                        </button>
+                    </div>
+                </div>
+
+                <div class="scholarship-card">
+                    <div class="scholarship-header">
+                        <div class="scholarship-amount">$15,000</div>
+                        <div class="scholarship-badge">Partial Funding</div>
+                    </div>
+                    <div class="scholarship-content">
+                        <h3>Women in STEM Scholarship</h3>
+                        <p class="scholarship-provider">University of Cape Town</p>
+                        <p class="scholarship-description">Supporting women pursuing degrees in Science, Technology, Engineering, and Mathematics fields.</p>
+                        <div class="scholarship-details">
+                            <span><i class="fas fa-map-marker-alt"></i> South Africa</span>
+                            <span><i class="fas fa-graduation-cap"></i> All Levels</span>
+                            <span><i class="fas fa-calendar"></i> Deadline: April 30, 2025</span>
+                        </div>
+                        <button class="btn-primary" onclick="applyForScholarship('women-stem')">
+                            Apply Now
+                        </button>
+                    </div>
+                </div>
+
+                <div class="scholarship-card">
+                    <div class="scholarship-header">
+                        <div class="scholarship-amount">$10,000</div>
+                        <div class="scholarship-badge">Merit-Based</div>
+                    </div>
+                    <div class="scholarship-content">
+                        <h3>Leadership Excellence Award</h3>
+                        <p class="scholarship-provider">University of Ghana</p>
+                        <p class="scholarship-description">Awarded to students demonstrating exceptional leadership potential and academic excellence.</p>
+                        <div class="scholarship-details">
+                            <span><i class="fas fa-map-marker-alt"></i> Ghana</span>
+                            <span><i class="fas fa-graduation-cap"></i> Undergraduate</span>
+                            <span><i class="fas fa-calendar"></i> Deadline: May 20, 2025</span>
+                        </div>
+                        <button class="btn-primary" onclick="applyForScholarship('leadership-excellence')">
+                            Apply Now
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Scholarship Categories -->
+        <div class="scholarship-categories">
+            <h2>Scholarship Categories</h2>
+            <div class="categories-grid">
+
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-university"></i>
+                    </div>
+                    <h3>University Scholarships</h3>
+                    <p>Direct funding from universities and academic institutions across Africa.</p>
+                    <a href="#university-scholarships" class="category-link">Explore <i class="fas fa-arrow-right"></i></a>
+                </div>
+
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-globe-africa"></i>
+                    </div>
+                    <h3>Government Scholarships</h3>
+                    <p>Funding opportunities provided by African governments and ministries.</p>
+                    <a href="#government-scholarships" class="category-link">Explore <i class="fas fa-arrow-right"></i></a>
+                </div>
+
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h3>Private Scholarships</h3>
+                    <p>Scholarships from corporations, foundations, and private organizations.</p>
+                    <a href="#private-scholarships" class="category-link">Explore <i class="fas fa-arrow-right"></i></a>
+                </div>
+
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Community Scholarships</h3>
+                    <p>Funding from community organizations and local initiatives.</p>
+                    <a href="#community-scholarships" class="category-link">Explore <i class="fas fa-arrow-right"></i></a>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Application Tips -->
+        <div class="application-tips">
+            <div class="tips-content">
+                <h2>Scholarship Application Tips</h2>
+
+                <div class="tips-grid">
+                    <div class="tip-item">
+                        <div class="tip-number">1</div>
+                        <div class="tip-content">
+                            <h4>Start Early</h4>
+                            <p>Begin your scholarship search 12-18 months before your intended start date. Many scholarships have early deadlines.</p>
+                        </div>
+                    </div>
+
+                    <div class="tip-item">
+                        <div class="tip-number">2</div>
+                        <div class="tip-content">
+                            <h4>Read Requirements Carefully</h4>
+                        </div>
+                    </div>
+
+                    <div class="tip-item">
+                        <div class="tip-number">3</div>
+                        <div class="tip-content">
+                            <h4>Prepare Strong Essays</h4>
+                            <p>Take time to write compelling personal statements that highlight your unique story and aspirations.</p>
+                        </div>
+                    </div>
+
+                    <div class="tip-item">
+                        <div class="tip-number">4</div>
+                        <div class="tip-content">
+                            <h4>Gather References</h4>
+                            <p>Secure strong letters of recommendation from teachers, mentors, or employers who know you well.</p>
+                        </div>
+                    </div>
+
+                    <div class="tip-item">
+                        <div class="tip-number">5</div>
+                        <div class="tip-content">
+                            <h4>Apply to Multiple Scholarships</h4>
+                            <p>Don't put all your eggs in one basket. Apply to several scholarships that match your profile.</p>
+                        </div>
+                    </div>
+
+                    <div class="tip-item">
+                        <div class="tip-number">6</div>
+                        <div class="tip-content">
+                            <h4>Follow Up</h4>
+                            <p>After applying, follow up politely if you haven't heard back within the expected timeframe.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Success Stories -->
+        <div class="success-stories">
+            <h2>Success Stories</h2>
+            <div class="stories-grid">
+
+                <div class="story-card">
+                    <div class="story-content">
+                        <blockquote>"Thanks to the African Excellence Scholarship, I was able to pursue my dream of studying medicine at the University of Nairobi. UNIGATE helped me find and apply for this life-changing opportunity."</blockquote>
+                        <cite>— Amina K., Medical Student, Kenya</cite>
+                    </div>
+                </div>
+
+                <div class="story-card">
+                    <div class="story-content">
+                        <blockquote>"The Women in STEM scholarship not only covered my tuition but also provided mentorship that shaped my career in engineering. I'm forever grateful for this support."</blockquote>
+                        <cite>— Fatima M., Engineering Student, South Africa</cite>
+                    </div>
+                </div>
+
+                <div class="story-card">
+                    <div class="story-content">
+                        <blockquote>"UNIGATE's scholarship matching service found me three different funding opportunities. I received a full scholarship that made my education possible."</blockquote>
+                        <cite>— David O., Computer Science Student, Ghana</cite>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Newsletter Signup -->
+        <div class="scholarship-newsletter">
+            <div class="newsletter-content">
+                <h2>Stay Updated on Scholarships</h2>
+                <p>Get notified about new scholarship opportunities and application deadlines.</p>
+                <div class="newsletter-form">
+                    <input type="email" placeholder="Enter your email" id="scholarshipEmail">
+                    <button onclick="subscribeScholarships()" class="btn-primary">Subscribe</button>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>UNIGATE</h4>
+                    <p>Empowering African students to achieve their dreams through simplified university applications.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Platform</h4>
+                    <ul>
+                        <li><a href="university.html">Universities</a></li>
+                        <li><a href="roadmap.html">Roadmap</a></li>
+                        <li><a href="scholarships.html" class="active">Scholarships</a></li>
+                        <li><a href="resources.html">Resources</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="help.html">Help Center</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms of Service</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Newsletter</h4>
+                    <p>Stay updated with the latest opportunities and tips.</p>
+                    <div class="newsletter-form">
+                        <input type="email" placeholder="Your email" id="newsletterEmail">
+                        <button onclick="subscribeNewsletter()" class="btn-primary">Subscribe</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 UNIGATE. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script src="js/script.js"></script>
+    <script src="js/scholarships.js"></script>
+    <script src="js/theme.js"></script>
+    <script src="js/profileMenu.js"></script>
+</body>
+</html>

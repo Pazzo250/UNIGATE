@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Help Center - UNIGATE</title>
+    <meta name="description" content="Get help and support for your university applications. Find answers to frequently asked questions and contact our support team.">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/help.css">
+    <link rel="stylesheet" href="fontawesome-free-6.7.2-web/css/all.min.css">
+    <link rel="icon" href="LOGO.png" type="image/png">
+</head>
+<body data-theme="dark">
+
+    <!-- Top Navigation Bar -->
+    <nav class="top-navbar">
+        <div class="navbar-container">
+            <div class="navbar-left">
+                <button class="sidebar-toggle" id="sidebarToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="brand-logo">
+                    <img src="LOGO.png" alt="UNIGAT Logo">
+                    <span class="brand-name">UNIGATE</span>
+                </div>
+            </div>
+
+            <div class="navbar-center">
+                <ul class="nav-menu">
+                    <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="home.html"><i class="fas fa-rocket"></i> Apply</a></li>
+                    <li><a href="roadmap.html"><i class="fas fa-map"></i> Roadmap</a></li>
+                    <li><a href="university.html"><i class="fas fa-university"></i> Universities</a></li>
+                    <li><a href="student-dashboard.html"><i class="fas fa-chart-line"></i> Dashboard</a></li>
+                </ul>
+            </div>
+
+            <div class="navbar-right">
+                <button class="theme-toggle" id="themeToggle" title="Toggle Theme">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="notification-btn" title="Notifications">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-badge">2</span>
+                </button>
+                <div class="profile-menu">
+                    <img src="LOGO.png" alt="Profile" class="profile-avatar">
+                    <span class="profile-name">Welcome</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-nav-overlay" id="mobileNavOverlay"></div>    
+    <div class="mobile-nav" id="mobileNav">
+        <div class="mobile-nav-header">
+            <h3>Menu</h3>
+            <button class="mobile-nav-close" id="mobileNavClose">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <ul class="mobile-nav-menu">
+            <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="roadmap.html"><i class="fas fa-map"></i> Roadmap</a></li>
+            <li><a href="university.html"><i class="fas fa-university"></i> Universities</a></li>
+            <li><a href="student-dashboard.html"><i class="fas fa-chart-line"></i> Dashboard</a></li>
+            <li><a href="login.html"><i class="fas fa-sign-in-alt"></i> Login</a></li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <main>        
+        <!-- Help Hero Section -->
+        <div class="help-hero">
+            <div class="help-hero-content">
+                <h1><i class="fas fa-question-circle"></i> Help Center</h1>
+                <p>Find answers to your questions and get the support you need for your university applications.</p>
+                <div class="help-search">
+                    <input type="text" placeholder="Search for help..." id="helpSearch" aria-label="Search help">
+                    <button type="button" class="btn-primary" id="searchBtn" title="Search">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Help Cards -->
+        <div class="help-grid">
+            <div class="help-card">
+                <div class="help-icon">
+                    <i class="fas fa-user-plus"></i>
+                </div>
+                <h3>Getting Started</h3>
+                <p>New to UNIGATE? Learn how to create your account and start your application journey.</p>
+                <a href="#getting-started" class="help-link">Learn More <i class="fas fa-arrow-right"></i></a>
+            </div>
+
+            <div class="help-card">
+                <div class="help-icon">
+                    <i class="fas fa-file-alt"></i>
+                </div>
+                <h3>Application Help</h3>
+                <p>Step-by-step guidance for completing your university applications successfully.</p>
+                <a href="#applications" class="help-link">Get Help <i class="fas fa-arrow-right"></i></a>
+            </div>
+
+            <div class="help-card">
+                <div class="help-icon">
+                    <i class="fas fa-university"></i>
+                </div>
+                <h3>University Selection</h3>
+                <p>Find the right university for you with our expert guidance and tools.</p>
+                <a href="#universities" class="help-link">Explore <i class="fas fa-arrow-right"></i></a>
+            </div>
+
+            <div class="help-card">
+                <div class="help-icon">
+                    <i class="fas fa-dollar-sign"></i>
+                </div>
+                <h3>Financial Aid</h3>
+                <p>Learn about scholarships, grants, and financing options for your education.</p>
+                <a href="#financial" class="help-link">Learn More <i class="fas fa-arrow-right"></i></a>
+            </div>
+
+            <div class="help-card">
+                <div class="help-icon">
+                    <i class="fas fa-envelope"></i>
+                </div>
+                <h3>Contact Support</h3>
+                <p>Can't find what you're looking for? Our support team is here to help.</p>
+                <a href="#contact" class="help-link">Contact Us <i class="fas fa-arrow-right"></i></a>
+            </div>
+
+            <div class="help-card">
+                <div class="help-icon">
+                    <i class="fas fa-tools"></i>
+                </div>
+                <h3>Troubleshooting</h3>
+                <p>Common issues and solutions for using the UNIGATE platform.</p>
+                <a href="#troubleshooting" class="help-link">Fix Issues <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+
+        <div class="help-categories">
+            <div class="help-category-card">
+                <div class="category-icon"><i class="fas fa-info"></i></div>
+                <h3>General Info</h3>
+                <p>Quick answers about the UNIGATE platform.</p>
+            </div>
+        </div>
+
+        <!-- FAQ Section -->
+        <div class="faq-section">
+            <h2>Frequently Asked Questions</h2>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h4>How do I create an account?</h4>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>To create an account, click the "Sign Up" button on the homepage and fill out the registration form with your personal information. You'll receive a confirmation email to verify your account.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h4>Can I apply to multiple universities at once?</h4>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Yes! UNIGATE allows you to apply to multiple African universities simultaneously. You can select up to 10 universities in a single application process.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h4>What documents do I need for my application?</h4>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Typically, you'll need: academic transcripts, identification documents, recommendation letters, personal statements, and proof of English proficiency. Requirements vary by university.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h4>How much does it cost to use UNIGATE?</h4>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Basic account creation and university browsing is free. Premium features like priority application processing and personalized counseling have associated fees. Check our pricing page for details.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h4>When will I hear back from universities?</h4>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Response times vary by university and program. Most universities respond within 2-8 weeks. You'll receive notifications through your UNIGATE dashboard when decisions are made.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact Support Section -->
+        <div class="contact-support">
+            <div class="contact-content">
+                <h2>Still Need Help?</h2>
+                <p>Our support team is here to assist you with any questions or issues you may have.</p>
+
+                <div class="contact-options">
+                    <div class="contact-option">
+                        <i class="fas fa-envelope"></i>
+                        <h4>Email Support</h4>
+                        <p>Get help via email - we typically respond within 24 hours.</p>
+                        <a href="mailto:support@unigate.org" class="btn-secondary">Email Us</a>
+                    </div>
+
+                    <div class="contact-option">
+                        <i class="fas fa-comments"></i>
+                        <h4>Live Chat</h4>
+                        <p>Chat with our support team for immediate assistance.</p>
+                        <button class="btn-primary" onclick="startLiveChat()">Start Chat</button>
+                    </div>
+
+                    <div class="contact-option">
+                        <i class="fas fa-phone"></i>
+                        <h4>Phone Support</h4>
+                        <p>Speak directly with our experts for complex issues.</p>
+                        <a href="tel:+1234567890" class="btn-secondary">Call Us</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>UNIGATE</h4>
+                    <p>Empowering African students to achieve their dreams through simplified university applications.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Platform</h4>
+                    <ul>
+                        <li><a href="university.html">Universities</a></li>
+                        <li><a href="roadmap.html">Roadmap</a></li>
+                        <li><a href="scholarships.html">Scholarships</a></li>
+                        <li><a href="resources.html">Resources</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="help.html" class="active">Help Center</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms of Service</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Newsletter</h4>
+                    <p>Stay updated with the latest opportunities and tips.</p>
+                    <div class="newsletter-form">
+                        <input type="email" placeholder="Your email" id="newsletterEmail">
+                        <button onclick="subscribeNewsletter()" class="btn-primary">Subscribe</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 UNIGATE. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script src="js/script.js"></script>
+    <script src="js/help.js"></script>
+    <script src="js/theme.js"></script>
+    <script src="js/profileMenu.js"></script>
+</body>
+</html>

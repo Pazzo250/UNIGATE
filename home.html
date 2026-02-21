@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UNIGATE - Start Your Application</title>
+    <meta name="description" content="Begin your university application journey. Choose your path: first-year student, transfer student, or parent/guardian. Apply to multiple African universities.">
+    <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="fontawesome-free-6.7.2-web/css/all.min.css">
+    <link rel="icon" href="LOGO.png" type="image/png">
+</head>
+<body data-theme="dark">
+
+    <!-- Top Navigation Bar -->
+    <nav class="top-navbar">
+        <div class="navbar-container">
+            <div class="navbar-left">
+                <button class="sidebar-toggle" id="sidebarToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="brand-logo">
+                    <a href="index.html"><img src="LOGO.png" alt="UNIGAT Logo"></a>
+                    <span class="brand-name">UNIGATE</span>
+                </div>
+            </div>
+
+            <div class="navbar-center">
+                <ul class="nav-menu">
+                    <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="home.html" class="active"><i class="fas fa-rocket"></i> Apply</a></li>                    
+                    <li><a href="roadmap.html"><i class="fas fa-map"></i> Roadmap</a></li>
+                    <li><a href="university.html"><i class="fas fa-university"></i> Universities</a></li>
+                    <li><a href="student-dashboard.html"><i class="fas fa-chart-line"></i> Dashboard</a></li>
+                </ul>
+            </div>
+
+            <div class="navbar-right">
+                <button class="theme-toggle" id="themeToggle" title="Toggle Theme">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="notification-btn" title="Notifications">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-badge">1</span>
+                </button>
+                <div class="profile-menu">
+                    <img id="profileAvatar" src="user.png" alt="Profile" class="profile-avatar">
+                    <span id="profileName" class="profile-name">Apply now</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-nav-overlay" id="mobileNavOverlay"></div>
+    <div class="mobile-nav" id="mobileNav">
+        <div class="mobile-nav-header">
+            <h3>Menu</h3>
+            <button class="mobile-nav-close" id="mobileNavClose">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <ul class="mobile-nav-menu">
+            <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="home.html" class="active"><i class="fas fa-rocket"></i> Apply</a></li>
+            <li><a href="roadmap.html"><i class="fas fa-map"></i> Roadmap</a></li>
+            <li><a href="university.html"><i class="fas fa-university"></i> Universities</a></li>
+            <li><a href="student-dashboard.html"><i class="fas fa-chart-line"></i> Dashboard</a></li>
+            <li><a href="login.html"><i class="fas fa-sign-in-alt"></i> Login</a></li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <main>
+
+        <!-- Welcome Section -->
+        <div class="welcome-section">
+            <div class="welcome-text">
+                <h1>Start Your Application Journey 🚀</h1>
+                <p>Choose your path and begin applying to multiple African universities. We're here to guide you every step of the way.</p>
+            </div>
+            <div class="welcome-actions">
+                <button class="btn-primary" onclick="scrollToSection('application-types')">
+                    <i class="fas fa-rocket"></i>
+                    Get Started
+                </button>
+            </div>
+        </div>
+
+        <!-- Application Types -->
+        <div class="content-grid" id="application-types">
+
+            <!-- First Year Students -->
+            <div class="content-card application-card">
+                <div class="card-header">
+                    <h2><i class="fas fa-graduation-cap"></i> First Year Students</h2>
+                </div>
+                <div class="card-body">
+                    <div class="application-description">
+                        <p>New to university applications? Start your journey with our comprehensive first-year student guide. We'll help you discover programs, prepare documents, and submit applications to your dream universities.</p>
+                        <div class="application-features">
+                            <div class="feature-tag">
+                                <i class="fas fa-check"></i>
+                                Program Discovery
+                            </div>
+                            <div class="feature-tag">
+                                <i class="fas fa-check"></i>
+                                Document Prep
+                            </div>
+                            <div class="feature-tag">
+                                <i class="fas fa-check"></i>
+                                Application Tracking
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-actions">
+                        <a href="first-year.html" class="btn-primary">
+                            <i class="fas fa-arrow-right"></i>
+                            Start Application
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Transfer Students -->
+            <div class="content-card application-card">
+                <div class="card-header">
+                    <h2><i class="fas fa-exchange-alt"></i> Transfer Students</h2>
+                </div>
+                <div class="card-body">
+                    <div class="application-description">
+                        <p>Already in university and looking to transfer? Our transfer student portal helps you seamlessly move between institutions. We'll assist with credit transfers, transcript evaluations, and new applications.</p>
+                        <div class="application-features">
+                            <div class="feature-tag">
+                                <i class="fas fa-check"></i>
+                                Credit Transfer
+                            </div>
+                            <div class="feature-tag">
+                                <i class="fas fa-check"></i>
+                                Transcript Review
+                            </div>
+                            <div class="feature-tag">
+                                <i class="fas fa-check"></i>
+                                Transfer Applications
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-actions">
+                        <a href="transfer.html" class="btn-primary">
+                            <i class="fas fa-arrow-right"></i>
+                            Transfer Now
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Parents & Guardians -->
+            <div class="content-card application-card">
+                <div class="card-header">
+                    <h2><i class="fas fa-users"></i> Parents & Guardians</h2>
+                </div>
+                <div class="card-body">
+                    <div class="application-description">
+                        <p>Supporting your child's university journey? Our parent portal provides you with tools to track applications, manage documents, and stay informed throughout the admissions process.</p>
+                        <div class="application-features">
+                            <div class="feature-tag">
+                                <i class="fas fa-check"></i>
+                                Application Tracking
+                            </div>
+                            <div class="feature-tag">
+                                <i class="fas fa-check"></i>
+                                Document Management
+                            </div>
+                            <div class="feature-tag">
+                                <i class="fas fa-check"></i>
+                                Progress Updates
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-actions">
+                        <a href="parent.html" class="btn-primary">
+                            <i class="fas fa-arrow-right"></i>
+                            Get Started
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Application Process -->
+        <div class="content-card process-card">
+            <div class="card-header">
+                <h2><i class="fas fa-route"></i> Your Application Process</h2>
+            </div>
+            <div class="card-body">
+                <div class="process-steps">
+                    <div class="process-step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>Choose Your Path</h4>
+                            <p>Select whether you're a first-year student, transfer student, or parent/guardian.</p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>Create Your Profile</h4>
+                            <p>Set up your account and provide basic information to get started.</p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4>Explore Universities</h4>
+                            <p>Browse and select universities that match your academic goals and preferences.</p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h4>Prepare Documents</h4>
+                            <p>Upload transcripts, recommendations, and other required documents.</p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">5</div>
+                        <div class="step-content">
+                            <h4>Submit Applications</h4>
+                            <p>Complete and submit your applications to multiple universities simultaneously.</p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">6</div>
+                        <div class="step-content">
+                            <h4>Track & Follow Up</h4>
+                            <p>Monitor your application status and follow up as needed.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> <br><br>
+
+        <!-- Quick Stats -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon blue">
+                    <i class="fas fa-clock"></i>
+                </div>
+                <div class="stat-content">
+                    <h3>5-10</h3>
+                    <p>Minutes Setup</p>
+                </div>
+                <div class="stat-trend positive">
+                    <i class="fas fa-bolt"></i> Quick start
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon green">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <div class="stat-content">
+                    <h3>100%</h3>
+                    <p>Secure Process</p>
+                </div>
+                <div class="stat-trend positive">
+                    <i class="fas fa-lock"></i> Encrypted
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon orange">
+                    <i class="fas fa-headset"></i>
+                </div>
+                <div class="stat-content">
+                    <h3>24/7</h3>
+                    <p>Support Available</p>
+                </div>
+                <div class="stat-trend positive">
+                    <i class="fas fa-star"></i> Always here
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon purple">
+                    <i class="fas fa-globe-africa"></i>
+                </div>
+                <div class="stat-content">
+                    <h3>15+</h3>
+                    <p>Countries Served</p>
+                </div>
+                <div class="stat-trend positive">
+                    <i class="fas fa-expand"></i> Growing
+                </div>
+            </div>
+        </div>
+
+        <!-- Support Section -->
+        <div class="support-section">
+            <div class="support-content">
+                <h2>Need Help Getting Started?</h2>
+                <p>Our support team is here to guide you through every step of your application process. Get personalized assistance and expert advice.</p>
+                <div class="support-actions">
+                    <button class="btn-secondary" onclick="openChat()">
+                        <i class="fas fa-comments"></i>
+                        Chat Support
+                    </button>
+                    <a href="#faq" class="btn-secondary">
+                        <i class="fas fa-question-circle"></i>
+                        View FAQ
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>UNIGATE</h4>
+                    <p>Simplifying university applications across Africa. Your gateway to higher education.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Applications</h4>
+                    <ul>
+                        <li><a href="first-year.html">First Year Students</a></li>
+                        <li><a href="transfer.html">Transfer Students</a></li>
+                        <li><a href="parent.html">Parents & Guardians</a></li>
+                        <li><a href="roadmap.html">Application Roadmap</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="university.html">Universities</a></li>
+                        <li><a href="#">Scholarships</a></li>
+                        <li><a href="#">Document Prep</a></li>
+                        <li><a href="#">Success Stories</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="#faq">Help Center</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2024 UNIGATE. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script src="js/home.js"></script>
+    <script src="js/theme.js"></script>
+    <script src="js/profileMenu.js"></script>
+</body>
+</html>

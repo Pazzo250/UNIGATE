@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - UNIGATE</title>
+    <meta name="description" content="Get in touch with UNIGATE. Contact our support team for help with university applications.">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/contact.css">
+    <link rel="stylesheet" href="fontawesome-free-6.7.2-web/css/all.min.css">
+    <link rel="icon" href="LOGO.png" type="image/png">
+</head>
+<body data-theme="dark">
+
+    <!-- Top Navigation Bar -->
+    <nav class="top-navbar">
+        <div class="navbar-container">
+            <div class="navbar-left">
+                <button class="sidebar-toggle" id="sidebarToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="brand-logo">
+                    <img src="LOGO.png" alt="UNIGAT Logo">
+                    <span class="brand-name">UNIGATE</span>
+                </div>
+            </div>
+
+            <div class="navbar-center">
+                <ul class="nav-menu">
+                    <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="roadmap.html"><i class="fas fa-map"></i> Roadmap</a></li>
+                    <li><a href="university.html"><i class="fas fa-university"></i> Universities</a></li>
+                    <li><a href="student-dashboard.html"><i class="fas fa-chart-line"></i> Dashboard</a></li>
+                </ul>
+            </div>
+
+            <div class="navbar-right">
+                <button class="theme-toggle" id="themeToggle" title="Toggle Theme">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="notification-btn" title="Notifications">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-badge">2</span>
+                </button>
+                <div class="profile-menu">
+                    <img src="LOGO.png" alt="Profile" class="profile-avatar">
+                    <span class="profile-name">Welcome</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-nav-overlay" id="mobileNavOverlay"></div>
+    <div class="mobile-nav" id="mobileNav">
+        <div class="mobile-nav-header">
+            <h3>Menu</h3>
+            <button class="mobile-nav-close" id="mobileNavClose">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <ul class="mobile-nav-menu">
+            <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="roadmap.html"><i class="fas fa-map"></i> Roadmap</a></li>
+            <li><a href="university.html"><i class="fas fa-university"></i> Universities</a></li>
+            <li><a href="student-dashboard.html"><i class="fas fa-chart-line"></i> Dashboard</a></li>
+            <li><a href="login.html"><i class="fas fa-sign-in-alt"></i> Login</a></li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <main>
+
+        <!-- Contact Hero -->
+        <div class="contact-hero">
+            <div class="contact-hero-content">
+                <h1><i class="fas fa-envelope"></i> Contact Us</h1>
+                <p>We're here to help you succeed in your university applications. Get in touch with our expert team.</p>
+            </div>
+        </div>
+
+        <!-- Contact Options -->
+        <div class="contact-options-grid">
+            <div class="contact-option-card">
+                <div class="contact-icon">
+                    <i class="fas fa-comments"></i>
+                </div>
+                <h3>Live Chat</h3>
+                <p>Get instant help from our support team. Available 24/7 for urgent questions.</p>
+                <button class="btn-primary" onclick="startLiveChat()">
+                    <i class="fas fa-comments"></i>
+                    Start Chat
+                </button>
+            </div>
+
+            <div class="contact-option-card">
+                <div class="contact-icon">
+                    <i class="fas fa-envelope"></i>
+                </div>
+                <h3>Email Support</h3>
+                <p>Send us a detailed message. We typically respond within 24 hours.</p>
+                <a href="mailto:support@unigate.org" class="btn-primary">
+                    <i class="fas fa-envelope"></i>
+                    Email Us
+                </a>
+            </div>
+
+            <div class="contact-option-card">
+                <div class="contact-icon">
+                    <i class="fas fa-phone"></i>
+                </div>
+                <h3>Phone Support</h3>
+                <p>Speak directly with our experts for complex issues and personalized guidance.</p>
+                <a href="tel:+1234567890" class="btn-primary">
+                    <i class="fas fa-phone"></i>
+                    Call Us
+                </a>
+            </div>
+
+            <div class="contact-option-card">
+                <div class="contact-icon">
+                    <i class="fas fa-map-marker-alt"></i>
+                </div>
+                <h3>Visit Our Office</h3>
+                <p>Located in the heart of Nairobi. Schedule an appointment for in-person consultation.</p>
+                <button class="btn-primary" onclick="scheduleVisit()">
+                    <i class="fas fa-calendar"></i>
+                    Schedule Visit
+                </button>
+            </div>
+        </div>
+
+        <!-- Contact Form -->
+        <div class="contact-form-section">
+            <div class="contact-form-container">
+                <div class="contact-form-header">
+                    <h2>Send us a Message</h2>
+                    <p>Fill out the form below and we'll get back to you as soon as possible.</p>
+                </div>
+
+                <form class="contact-form" id="contactForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="firstName">First Name *</label>
+                            <input type="text" id="firstName" name="firstName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName">Last Name *</label>
+                            <input type="text" id="lastName" name="lastName" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="email">Email Address *</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="subject">Subject *</label>
+                        <select id="subject" name="subject" required>
+                            <option value="">Select a topic</option>
+                            <option value="application-help">Application Help</option>
+                            <option value="technical-support">Technical Support</option>
+                            <option value="university-info">University Information</option>
+                            <option value="billing">Billing & Payments</option>
+                            <option value="partnership">Partnership Inquiry</option>
+                            <option value="feedback">Feedback & Suggestions</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Message *</label>
+                        <textarea id="message" name="message" rows="6" placeholder="Please describe your question or issue in detail..." required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="newsletter" checked>
+                            Subscribe to our newsletter for updates and tips
+                        </label>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="button" class="btn-secondary" onclick="resetContactForm()">
+                            <i class="fas fa-undo"></i>
+                            Reset Form
+                        </button>
+                        <button type="submit" class="btn-primary">
+                            <i class="fas fa-paper-plane"></i>
+                            Send Message
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Office Information -->
+        <div class="office-info">
+            <div class="office-content">
+                <div class="office-details">
+                    <h2>Our Offices</h2>
+
+                    <div class="office-location">
+                        <div class="office-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="office-text">
+                            <h4>Headquarters - Nairobi, Kenya</h4>
+                            <p>123 University Avenue<br>
+                            Westlands, Nairobi 00100<br>
+                            Kenya</p>
+                            <p><strong>Phone:</strong> +254 700 123 456<br>
+                            <strong>Email:</strong> info@unigate.org</p>
+                        </div>
+                    </div>
+
+                    <div class="office-location">
+                        <div class="office-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="office-text">
+                            <h4>Business Hours</h4>
+                            <p><strong>Monday - Friday:</strong> 8:00 AM - 6:00 PM EAT<br>
+                            <strong>Saturday:</strong> 9:00 AM - 4:00 PM EAT<br>
+                            <strong>Sunday:</strong> Closed</p>
+                            <p><em>24/7 online support available</em></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="office-map">
+                    <!-- Placeholder for map integration -->
+                    <div class="map-placeholder">
+                        <i class="fas fa-map-marked-alt"></i>
+                        <p>Interactive map coming soon</p>
+                        <small>123 University Avenue, Nairobi, Kenya</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FAQ Preview -->
+        <div class="faq-preview">
+            <div class="faq-content">
+                <h2>Quick Answers</h2>
+                <p>Check our Help Center for instant answers to common questions.</p>
+
+                <div class="faq-links">
+                    <a href="help.html#applications" class="faq-link">
+                        <i class="fas fa-file-alt"></i>
+                        Application Process
+                    </a>
+                    <a href="help.html#universities" class="faq-link">
+                        <i class="fas fa-university"></i>
+                        University Selection
+                    </a>
+                    <a href="help.html#financial" class="faq-link">
+                        <i class="fas fa-dollar-sign"></i>
+                        Financial Aid
+                    </a>
+                    <a href="help.html#troubleshooting" class="faq-link">
+                        <i class="fas fa-tools"></i>
+                        Technical Issues
+                    </a>
+                </div>
+
+                <div class="faq-cta">
+                    <a href="help.html" class="btn-primary">
+                        <i class="fas fa-question-circle"></i>
+                        Visit Help Center
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>UNIGATE</h4>
+                    <p>Empowering African students to achieve their dreams through simplified university applications.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Platform</h4>
+                    <ul>
+                        <li><a href="university.html">Universities</a></li>
+                        <li><a href="roadmap.html">Roadmap</a></li>
+                        <li><a href="scholarships.html">Scholarships</a></li>
+                        <li><a href="resources.html">Resources</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="help.html">Help Center</a></li>
+                        <li><a href="contact.html" class="active">Contact Us</a></li>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms of Service</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Newsletter</h4>
+                    <p>Stay updated with the latest opportunities and tips.</p>
+                    <div class="newsletter-form">
+                        <input type="email" placeholder="Your email" id="newsletterEmail">
+                        <button onclick="subscribeNewsletter()" class="btn-primary">Subscribe</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 UNIGATE. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script src="js/script.js"></script>
+    <script src="js/contact.js"></script>
+</body>
+</html>

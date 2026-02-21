@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>First Year Registration — Cross Africa University</title>
+    <meta name="description" content="First-year student application portal for African universities. Start your higher education journey with our comprehensive application process for universities across Africa.">
+    <meta name="keywords" content="first year students, freshman applications, African universities, college applications, university admissions, UNIGATE">
+    <meta name="author" content="UNIGATE">
+    <link rel="icon" href="logo.png" type="image/png">
+    <link rel="stylesheet" href="css/firstyear_signup.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <script defer src="js/firstyear_signup.js"></script>
+  </head>
+  <body class="index-bg home-page">   
+      
+    <div class="brand">
+      <div class="logo-blob"><img src="logo.png" alt="Cross Africa Universities"></div>
+      <div class="brand-text" aria-hidden="true">        
+      </div>
+    </div> 
+        
+    <main class="form-page">
+
+      <!-- Virtual Advisor Section -->
+      <section class="virtual-advisor" style="padding:20px;background:linear-gradient(135deg, #4cb3ff 0%, #062032 100%);color:#fff;border-radius:12px;margin:20px 0;">
+        <div class="advisor-content" style="display:flex;flex-wrap:wrap;align-items:center;gap:24px;width:100%;max-width:none;margin:0 auto;">
+          
+          <!-- Font Awesome Icon instead of SVG -->
+          <div class="advisor-icon" style="flex-shrink:0;font-size:80px;">
+            <i class="fas fa-user-check" style="color:#fff;"></i>
+          </div>
+
+          <div class="advisor-text" style="flex:1;min-width:250px;">
+            <h2 style="margin:0 0 8px;font-size:28px;">Meet Your Virtual Advisor</h2>
+            <p style="margin:0 0 16px;font-size:16px;">Get instant guidance on your university applications. Our AI-powered advisor helps you choose the right programs, prepare documents, and navigate deadlines.</p>
+            <button id="advisorBtn" class="btn-cta btn-primary" style="background:#fff;color:#062032;padding:12px 24px;border-radius:8px;border:none;font-weight:600;cursor:pointer;">Chat with Advisor</button>
+          </div>
+        </div>
+
+        <div id="advisorChat" class="advisor-chat" style="display:none;padding:20px;background:#fff;color:#000000;border-radius:8px;width:100%;max-width:600px;margin:20px auto 0;">
+          <div class="chat-messages" id="chatMessages" style="max-height:300px;overflow-y:auto;margin-bottom:12px;">
+            <div class="message bot" style="margin-bottom:12px;"><strong>Advisor:</strong> Hello! How can I help you with your university applications today?</div>
+          </div>
+          <div class="chat-input" style="display:flex;gap:12px;">
+            <input type="text" id="chatInput" placeholder="Ask me anything..." style="flex:1;padding:12px;border:1px solid #ddd;border-radius:4px;">
+            <button id="sendBtn" class="btn-cta" style="padding:12px 20px;background:#4cb3ff;color:#fff;border:none;border-radius:4px;cursor:pointer;">Send</button>
+          </div>
+          <div class="quick-replies" style="display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;">
+            <button class="quick-reply-btn" onclick="handleQuickReply('What is the application process?')">Application Process</button>
+            <button class="quick-reply-btn" onclick="handleQuickReply('How do I find scholarships?')">Scholarships</button>
+            <button class="quick-reply-btn" onclick="handleQuickReply('What do I need for a visa?')">Visa Info</button>
+            <button class="quick-reply-btn" onclick="handleQuickReply('What are admission requirements?')">Admissions</button>
+            <button class="quick-reply-btn" onclick="handleQuickReply('What documents are required?')">Requirements</button>
+            <button class="quick-reply-btn" onclick="handleQuickReply('How do I prepare my documents?')">Documents</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Registration Form -->
+      <div class="form-card">
+        <a class="back" href="index.html">Back</a>
+        <h1>Create your account</h1>
+
+        <section class="section">
+          <h2 class="section-title">Account information</h2>
+          <form id="firstYearForm">
+            <label class="field">
+              <span class="label-text">Email address <span class="required">*</span></span>
+              <input name="email" type="email" required>
+            </label>
+
+            <label class="field">
+              <span class="label-text">Re-type Email address <span class="required">*</span></span>
+              <input name="email2" type="email" required>
+            </label>
+
+            <label class="field">
+              <span class="label-text">Password <span class="required">*</span></span>
+              <input name="password" type="password" required>
+            </label>
+
+            <label class="field">
+              <span class="label-text">Re-type Password <span class="required">*</span></span>
+              <input name="password2" type="password" required>
+            </label>
+
+            <div class="radio-block">
+              <div class="radio-header">
+                <p class="label-text">Which best describes you? <span class="required">*</span></p>
+                <button type="button" class="clear-choice" aria-label="Clear selection">Clear</button>
+              </div>
+              <label class="radio-label"><input type="radio" name="year_type" value="2025"> Applying as a first-year student and plan to start college in 2025 or 2026</label>
+              <label class="radio-label"><input type="radio" name="year_type" value="2027"> Planning to start college in 2027</label>
+              <label class="radio-label"><input type="radio" name="year_type" value="2028"> Planning to start college in 2028 or beyond</label>
+            </div>
+
+            <hr>
+
+            <h3 class="section-title">Personal information</h3>
+            <label class="field">
+              <span class="label-text">Legal first / given name <span class="required">*</span></span>
+              <input name="name" required>
+            </label>
+
+            <label class="field">
+              <span class="label-text">Last / family / surname <span class="required">*</span></span>
+              <input name="surname" required>
+            </label>
+
+            <label class="field">
+              <span class="label-text">Date of birth <span class="required">*</span></span>
+              <input name="dob" type="date" required>
+            </label>
+
+            <hr>
+
+            <div class="contact-grid">
+              <div>
+                <h3 class="section-title">Contact details</h3>
+              </div>
+              <div>
+                <label class="field">
+                  <span class="label-text">Phone <span class="required">*</span></span>
+                  <div class="phone-row">
+                    <select name="country_code" class="country-input" aria-label="Country code">
+                      <option value="+254" selected>🇰🇪 +254 — Kenya</option>
+                      <option value="+250">🇷🇼 +250 — Rwanda</option>
+                      <option value="+1">🇺🇸 +1 — United States</option>
+                      <!-- Add other countries as needed -->
+                    </select>
+                    <input type="tel" name="phone" required placeholder="712345678" pattern="[0-9]*">
+                  </div>
+                  <p class="helper">Phone includes country code and number.</p>
+                </label>
+
+                <label class="field address-field">
+                  <span class="label-text">Permanent home address <span class="required">*</span></span>
+                  <button type="button" class="add-address" aria-label="Add address"><span class="plus">+</span> Add address</button>
+                </label>
+              </div>
+            </div>
+
+            <hr>
+
+            <div class="consent">
+              <label class="checkbox-label"><input type="checkbox" name="agree"> By checking this box, I agree to the <a href="#">terms of use</a>.</label>
+            </div>
+
+            <button class="submit" type="submit">Create account</button>
+            <p style="margin:8px 0 16px;color:var(--muted)">Already have an account? 
+              <a href="login.html" style="color:var(--accent-1);font-weight:700">Log in here</a>.
+            </p>
+          </form>
+        </section>
+      </div>
+    </main>
+  </body>
+</html>

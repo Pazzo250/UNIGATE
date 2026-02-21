@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard - UNIGAT</title>
+    <link rel="stylesheet" href="unigat.css">
+    <link rel="stylesheet" href="css/student-dashboard.css">
+    <link rel="stylesheet" href="fontawesome-free-6.7.2-web/css/all.min.css">
+    <link rel="icon" href="LOGO.png" type="image/png">
+</head>
+<body class="dashboard-body" data-theme="dark">
+    
+    <!-- Top Navigation Bar -->
+    <nav class="top-navbar">
+        <div class="navbar-container">
+            <div class="navbar-left">
+                <button class="sidebar-toggle" id="sidebarToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="brand-logo">
+                    <a href="index.html"><img src="LOGO.png" alt="UNIGAT Logo"></a>
+                    <span class="brand-name">UNIGATE</span>
+                </div>
+            </div>
+            
+            <div class="navbar-center">
+                <ul class="nav-menu">
+                    <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="home.html"><i class="fas fa-rocket"></i> Apply</a></li>
+                    <li><a href="roadmap.html"><i class="fas fa-map"></i> Roadmap</a></li>
+                    <li><a href="university.html"><i class="fas fa-university"></i> Universities</a></li>
+                    <li><a href="student-dashboard.html" class="active"><i class="fas fa-chart-line"></i> Dashboard</a></li>
+                </ul>
+            </div>
+            
+            <div class="navbar-right">
+                <button class="theme-toggle" id="themeToggle" title="Toggle Theme">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="notification-btn" title="Notifications">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-badge">3</span>
+                </button>
+                <div class="profile-menu">
+                    <img id="profileAvatar" src="LOGO.png" alt="Profile" class="profile-avatar">
+                    <span id="profileName" class="profile-name">P.RUBERWA</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-nav-overlay" id="mobileNavOverlay"></div>    
+    <div class="mobile-nav" id="mobileNav">
+        <div class="mobile-nav-header">
+            <h3>Menu</h3>
+            <button class="mobile-nav-close" id="mobileNavClose">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <ul class="mobile-nav-menu">
+            <li><a href="home.html"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="roadmap.html"><i class="fas fa-map"></i> Roadmap</a></li>
+            <li><a href="university.html"><i class="fas fa-university"></i> Universities</a></li>
+            <li><a href="student-dashboard.html" class="active"><i class="fas fa-chart-line"></i> Dashboard</a></li>
+            <li><a href="#" class="logout-link"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+        </ul>
+    </div>
+
+    <!-- Main Dashboard Container -->
+    <div class="dashboard-container">
+        
+        <!-- Left Sidebar -->
+        <aside class="dashboard-sidebar" id="dashboardSidebar">
+            <div class="sidebar-content">
+                
+                <!-- User Profile Section -->
+                <div class="sidebar-profile">
+                    <div class="profile-avatar-large">
+                        <img src="LOGO.png" alt="User Avatar">
+                        <div class="status-indicator"></div>
+                    </div>
+                    <h3 class="profile-name">John Doe</h3>
+                    <p class="profile-email">john.doe@example.com</p>
+                    <span class="profile-badge">Active Student</span>
+                </div>
+
+                <!-- Application Progress -->
+                <div class="sidebar-section">
+                    <h4 class="section-title">Application Progress</h4>
+                    <div class="progress-container">
+                        <div class="progress-info">
+                            <span>3 of 5 completed</span>
+                            <span class="progress-percentage">60%</span>
+                        </div>
+                        <div class="progress-bar-wrapper">
+                            <div class="progress-bar-fill" style="width: 60%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Navigation Menu -->
+                <nav class="sidebar-nav">
+                    <a href="#overview" class="nav-item active" data-section="overview">
+                        <i class="fas fa-chart-pie"></i>
+                        <span>Overview</span>
+                    </a>
+                    <a href="#applications" class="nav-item" data-section="applications">
+                        <i class="fas fa-file-alt"></i>
+                        <span>Applications</span>
+                    </a>
+                    <a href="#documents" class="nav-item" data-section="documents">
+                        <i class="fas fa-folder-open"></i>
+                        <span>Documents</span>
+                    </a>
+                    <a href="#financial" class="nav-item" data-section="financial">
+                        <i class="fas fa-dollar-sign"></i>
+                        <span>Financial Aid</span>
+                    </a>
+                    <a href="#messages" class="nav-item" data-section="messages">
+                        <i class="fas fa-envelope"></i>
+                        <span>Messages</span>
+                        <span class="badge">2</span>
+                    </a>
+                    <a href="#calendar" class="nav-item" data-section="calendar">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span>Calendar</span>
+                    </a>
+                </nav>
+
+                <!-- Quick Actions -->
+                <div class="sidebar-section">
+                    <h4 class="section-title">Quick Actions</h4>
+                    <div class="quick-actions">
+                        <button class="quick-action-btn">
+                            <i class="fas fa-plus"></i>
+                            <span>New Application</span>
+                        </button>
+                        <button class="quick-action-btn">
+                            <i class="fas fa-upload"></i>
+                            <span>Upload Document</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Upcoming Deadlines -->
+                <div class="sidebar-section">
+                    <h4 class="section-title">Upcoming Deadlines</h4>
+                    <div class="deadline-list">
+                        <div class="deadline-item">
+                            <div class="deadline-date">
+                                <span class="date-day">15</span>
+                                <span class="date-month">Dec</span>
+                            </div>
+                            <div class="deadline-info">
+                                <p class="deadline-title">Harvard Application</p>
+                                <span class="deadline-time">5 days left</span>
+                            </div>
+                        </div>
+                        <div class="deadline-item">
+                            <div class="deadline-date">
+                                <span class="date-day">20</span>
+                                <span class="date-month">Dec</span>
+                            </div>
+                            <div class="deadline-info">
+                                <p class="deadline-title">MIT Response</p>
+                                <span class="deadline-time">10 days left</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Logout Button -->
+                <div class="sidebar-footer">
+                    <button class="logout-btn">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>Logout</span>
+                    </button>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="dashboard-main">
+            
+            <!-- Welcome Section -->
+            <div class="welcome-section">
+                <div class="welcome-text">
+                    <h1>Welcome back, John! 👋</h1>
+                    <p>Here's what's happening with your applications today.</p>
+                </div>
+                <div class="welcome-actions">
+                    <button class="btn-primary">
+                        <i class="fas fa-plus"></i>
+                        New Application
+                    </button>
+                </div>
+            </div>
+
+            <!-- Stats Cards -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon blue">
+                        <i class="fas fa-file-alt"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3>5</h3>
+                        <p>Total Applications</p>
+                    </div>
+                    <div class="stat-trend positive">
+                        <i class="fas fa-arrow-up"></i> 2 this month
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon green">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3>3</h3>
+                        <p>Completed</p>
+                    </div>
+                    <div class="stat-trend positive">
+                        <i class="fas fa-arrow-up"></i> 60% complete
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon orange">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3>2</h3>
+                        <p>Pending</p>
+                    </div>
+                    <div class="stat-trend">
+                        <i class="fas fa-minus"></i> In progress
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon purple">
+                        <i class="fas fa-calendar-check"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3>3</h3>
+                        <p>Deadlines</p>
+                    </div>
+                    <div class="stat-trend warning">
+                        <i class="fas fa-exclamation-circle"></i> 1 urgent
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Content Grid -->
+            <div class="content-grid">
+                
+                <!-- Recent Applications -->
+                <div class="content-card applications-card">
+                    <div class="card-header">
+                        <h2><i class="fas fa-file-alt"></i> Recent Applications</h2>
+                        <a href="#" class="view-all">View All <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <div class="card-body">
+                        <div class="application-item">
+                            <div class="app-icon">
+                                <i class="fas fa-university"></i>
+                            </div>
+                            <div class="app-info">
+                                <h4>Harvard University</h4>
+                                <p>Computer Science • Fall 2024</p>
+                            </div>
+                            <div class="app-status">
+                                <span class="status-badge submitted">Submitted</span>
+                                <span class="app-date">Dec 1, 2023</span>
+                            </div>
+                        </div>
+                        
+                        <div class="application-item">
+                            <div class="app-icon">
+                                <i class="fas fa-university"></i>
+                            </div>
+                            <div class="app-info">
+                                <h4>MIT</h4>
+                                <p>Engineering • Fall 2024</p>
+                            </div>
+                            <div class="app-status">
+                                <span class="status-badge in-progress">In Progress</span>
+                                <span class="app-date">75% Complete</span>
+                            </div>
+                        </div>
+                        
+                        <div class="application-item">
+                            <div class="app-icon">
+                                <i class="fas fa-university"></i>
+                            </div>
+                            <div class="app-info">
+                                <h4>Stanford University</h4>
+                                <p>Business Administration • Fall 2024</p>
+                            </div>
+                            <div class="app-status">
+                                <span class="status-badge pending">Pending</span>
+                                <span class="app-date">Dec 15, 2023</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Notifications -->
+                <div class="content-card notifications-card">
+                    <div class="card-header">
+                        <h2><i class="fas fa-bell"></i> Notifications</h2>
+                        <button class="mark-read">Mark all read</button>
+                    </div>
+                    <div class="card-body">
+                        <div class="notification-item unread">
+                            <div class="notif-icon success">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                            <div class="notif-content">
+                                <h4>Application Submitted</h4>
+                                <p>Your Harvard application has been successfully submitted.</p>
+                                <span class="notif-time">2 hours ago</span>
+                            </div>
+                        </div>
+                        
+                        <div class="notification-item unread">
+                            <div class="notif-icon warning">
+                                <i class="fas fa-exclamation-triangle"></i>
+                            </div>
+                            <div class="notif-content">
+                                <h4>Deadline Approaching</h4>
+                                <p>MIT application deadline is in 5 days.</p>
+                                <span class="notif-time">5 hours ago</span>
+                            </div>
+                        </div>
+                        
+                        <div class="notification-item">
+                            <div class="notif-icon info">
+                                <i class="fas fa-info-circle"></i>
+                            </div>
+                            <div class="notif-content">
+                                <h4>Document Uploaded</h4>
+                                <p>Your transcript has been uploaded successfully.</p>
+                                <span class="notif-time">1 day ago</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Messages -->
+                <div class="content-card messages-card">
+                    <div class="card-header">
+                        <h2><i class="fas fa-envelope"></i> Recent Messages</h2>
+                        <a href="#" class="view-all">View All <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <div class="card-body">
+                        <div class="message-item unread">
+                            <img src="LOGO.png" alt="Advisor" class="message-avatar">
+                            <div class="message-content">
+                                <div class="message-header">
+                                    <h4>Sarah Johnson</h4>
+                                    <span class="message-time">10:30 AM</span>
+                                </div>
+                                <p>Your application looks great! Just need to review...</p>
+                            </div>
+                            <span class="unread-dot"></span>
+                        </div>
+                        
+                        <div class="message-item">
+                            <img src="LOGO.png" alt="University" class="message-avatar">
+                            <div class="message-content">
+                                <div class="message-header">
+                                    <h4>Harvard Admissions</h4>
+                                    <span class="message-time">Yesterday</span>
+                                </div>
+                                <p>We have received your application and will review...</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Actions Card -->
+                <div class="content-card quick-actions-card">
+                    <div class="card-header">
+                        <h2><i class="fas fa-bolt"></i> Quick Actions</h2>
+                    </div>
+                    <div class="card-body">
+                        <div class="action-buttons">
+                            <button class="action-btn">
+                                <i class="fas fa-plus-circle"></i>
+                                <span>Start New Application</span>
+                            </button>
+                            <button class="action-btn">
+                                <i class="fas fa-upload"></i>
+                                <span>Upload Documents</span>
+                            </button>
+                            <button class="action-btn">
+                                <i class="fas fa-calendar-plus"></i>
+                                <span>Schedule Meeting</span>
+                            </button>
+                            <button class="action-btn">
+                                <i class="fas fa-comments"></i>
+                                <span>Contact Advisor</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Calendar Widget -->
+                <div class="content-card calendar-card">
+                    <div class="card-header">
+                        <h2><i class="fas fa-calendar-alt"></i> Upcoming Events</h2>
+                        <a href="#" class="view-all">View Calendar <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <div class="card-body">
+                        <div class="event-item">
+                            <div class="event-date">
+                                <span class="event-day">15</span>
+                                <span class="event-month">DEC</span>
+                            </div>
+                            <div class="event-info">
+                                <h4>Harvard Application Deadline</h4>
+                                <p><i class="fas fa-clock"></i> 11:59 PM EST</p>
+                            </div>
+                        </div>
+                        
+                        <div class="event-item">
+                            <div class="event-date">
+                                <span class="event-day">18</span>
+                                <span class="event-month">DEC</span>
+                            </div>
+                            <div class="event-info">
+                                <h4>Advisor Meeting</h4>
+                                <p><i class="fas fa-clock"></i> 2:00 PM - 3:00 PM</p>
+                            </div>
+                        </div>
+                        
+                        <div class="event-item">
+                            <div class="event-date">
+                                <span class="event-day">20</span>
+                                <span class="event-month">DEC</span>
+                            </div>
+                            <div class="event-info">
+                                <h4>MIT Response Deadline</h4>
+                                <p><i class="fas fa-clock"></i> 11:59 PM EST</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Documents Overview -->
+                <div class="content-card documents-card">
+                    <div class="card-header">
+                        <h2><i class="fas fa-folder-open"></i> Documents</h2>
+                        <a href="#" class="view-all">Manage <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <div class="card-body">
+                        <div class="document-item">
+                            <div class="doc-icon-wrapper">
+                                <i class="fas fa-file-pdf"></i>
+                            </div>
+                            <div class="doc-info">
+                                <h4>Transcript.pdf</h4>
+                                <p>Uploaded 2 days ago • 2.4 MB</p>
+                            </div>
+                            <button class="doc-action">
+                                <i class="fas fa-download"></i>
+                            </button>
+                        </div>
+                        
+                        <div class="document-item">
+                            <div class="doc-icon-wrapper">
+                                <i class="fas fa-file-word"></i>
+                            </div>
+                            <div class="doc-info">
+                                <h4>Personal Statement.docx</h4>
+                                <p>Uploaded 1 week ago • 1.8 MB</p>
+                            </div>
+                            <button class="doc-action">
+                                <i class="fas fa-download"></i>
+                            </button>
+                        </div>
+                        
+                        <div class="document-item">
+                            <div class="doc-icon-wrapper">
+                                <i class="fas fa-file-image"></i>
+                            </div>
+                            <div class="doc-info">
+                                <h4>ID_Photo.jpg</h4>
+                                <p>Uploaded 2 weeks ago • 856 KB</p>
+                            </div>
+                            <button class="doc-action">
+                                <i class="fas fa-download"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script src="js/student-dashboard.js"></script>
+    <script src="js/theme.js"></script>
+    <script src="js/profileMenu.js"></script>
+</body>
+</html>

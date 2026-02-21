@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Admin — Payments</title>
+<link rel="stylesheet" href="../css/admin.css">
+</head>
+<body>
+  <main class="admin-main" style="padding:20px">
+    <h2>Payments</h2>
+    <div style="margin-bottom:12px">
+      <button id="reconcileBtn" class="btn">Reconcile (JSON)</button>
+      <button id="reconcileCsvBtn" class="btn" style="margin-left:8px">Reconcile (CSV)</button>
+      <button id="createPayBtn" class="btn" style="margin-left:8px">Create Payment</button>
+    </div>
+
+    <div id="reconcileResult" style="margin-bottom:16px"></div>
+
+    <table id="paymentsTable" class="table">
+      <thead><tr><th>ID</th><th>User</th><th>Amount</th><th>Currency</th><th>Status</th><th>Actions</th></tr></thead>
+      <tbody></tbody>
+    </table>
+  </main>
+
+<script>
+async function fetchPayments(){
+  const res = await fetch('/api/payments', { headers:{ 'Authorization':'Bearer '+localStorage.getItem('token') }});
+  const data = await res.json();
+  const tbody = document.querySelector('#paymentsTable tbody'); tbody.innerHTML='';
+  (data.rows||[]).forEach(p=>{
+    const tr = document.createElement('tr');
+    tr.innerHTML = `<td>${p.id}</td><td>${p.userId||''}</td><td>${p.amount}</td><td>${p.currency}</td><td>${p.status}</td>
+      <td><button class="verify" data-id="${p.id}">Verify</button> <button class="refund" data-id="${p.id}">Refund</button></td>`;
+    tbody.appendChild(tr);
+  });
+}
+
+async function doReconcile(asCsv=false){
+  const start = prompt('Start date (ISO) or leave blank');
+  const end = prompt('End date (ISO) or leave blank');
+  const url = '/api/payments/reconcile' + (asCsv ? '?export=csv' : '');
+  const res = await fetch(url, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'Authorization':'Bearer '+localStorage.getItem('token') },
+    body: JSON.stringify({ start: start||null, end: end||null })
+  });
+
+  if (asCsv) {
+    if (!res.ok) { alert('Reconcile CSV failed'); return; }
+    const blob = await res.blob();
+    const urlb = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = urlb;
+    a.download = `payments-reconcile-${Date.now()}.csv`;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    URL.revokeObjectURL(urlb);
+    document.getElementById('reconcileResult').textContent = 'CSV exported.';
+    return;
+  }
+
+  const json = await res.json();
+  const el = document.getElementById('reconcileResult');
+  el.innerHTML = `<strong>Summary:</strong> total=${json.total} count=${json.count}`;
+  // show a short table of reconciled rows
+  if (json.rows && json.rows.length) {
+    const tbl = document.createElement('table');
+    tbl.className = 'table';
+    const header = document.createElement('thead');
+    header.innerHTML = '<tr><th>ID</th><th>Amount</th><th>Currency</th><th>Status</th><th>Created</th></tr>';
+    const body = document.createElement('tbody');
+    json.rows.slice(0,50).forEach(r => {
+      const tr = document.createElement('tr');
+      tr.innerHTML = `<td>${r.id}</td><td>${r.amount}</td><td>${r.currency}</td><td>${r.status}</td><td>${new Date(r.createdAt).toLocaleString()}</td>`;
+      body.appendChild(tr);
+    });
+    tbl.appendChild(header); tbl.appendChild(body);
+    el.appendChild(tbl);
+  }
+}
+
+document.addEventListener('DOMContentLoaded', ()=>{
+  fetchPayments();
+  document.getElementById('createPayBtn').addEventListener('click', async ()=>{
+    const amount = parseFloat(prompt('Amount', '0')) || 0;
+    const currency = prompt('Currency', 'USD') || 'USD';
+    await fetch('/api/payments', { method:'POST', headers:{ 'Content-Type':'application/json','Authorization':'Bearer '+localStorage.getItem('token') }, body: JSON.stringify({ amount, currency, userId: null })});
+    fetchPayments();
+  });
+  document.getElementById('reconcileBtn').addEventListener('click', ()=> doReconcile(false));
+  document.getElementById('reconcileCsvBtn').addEventListener('click', ()=> doReconcile(true));
+
+  document.querySelector('#paymentsTable').addEventListener('click', async (e)=>{
+    if(e.target.matches('.verify')){
+      const id = e.target.getAttribute('data-id');
+      await fetch(`/api/payments/${id}/verify`, { method:'POST', headers:{ 'Content-Type':'application/json','Authorization':'Bearer '+localStorage.getItem('token') }, body: JSON.stringify({ status:'confirmed' })});
+      fetchPayments();
+    }
+    if(e.target.matches('.refund')){
+      const id = e.target.getAttribute('data-id');
+      const amount = parseFloat(prompt('Refund amount', '0')) || 0;
+      await fetch(`/api/payments/${id}/refund`, { method:'POST', headers:{ 'Content-Type':'application/json','Authorization':'Bearer '+localStorage.getItem('token') }, body: JSON.stringify({ amount, reason:'admin refund' })});
+      fetchPayments();
+    }
+  });
+});
+</script>
+</body>
+</html>

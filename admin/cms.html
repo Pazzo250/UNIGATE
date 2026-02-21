@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Admin — CMS</title>
+<link rel="stylesheet" href="../css/admin.css">
+</head>
+<body>
+  <main class="admin-main" style="padding:20px">
+    <h2>CMS</h2>
+    <div style="margin-bottom:12px">
+      <button id="createCmsBtn" class="btn">Create Content</button>
+      <input id="cmsSearch" placeholder="Search title..." style="margin-left:8px;padding:8px">
+    </div>
+    <table id="cmsTable" class="table">
+      <thead><tr><th>Type</th><th>Title</th><th>Slug</th><th>Status</th><th>Actions</th></tr></thead>
+      <tbody></tbody>
+    </table>
+  </main>
+
+<script>
+async function fetchCMS(){
+  const q = document.getElementById('cmsSearch').value.trim();
+  const res = await fetch('/api/cms?q='+encodeURIComponent(q), { headers:{ 'Authorization':'Bearer '+localStorage.getItem('token') }});
+  const j = await res.json();
+  const tbody = document.querySelector('#cmsTable tbody'); tbody.innerHTML='';
+  (j.rows||[]).forEach(c=>{
+    const tr = document.createElement('tr');
+    tr.innerHTML = `<td>${c.type}</td><td>${c.title}</td><td>${c.slug}</td><td>${c.status}</td>
+      <td><button class="edit" data-id="${c.id}">Edit</button> <button class="del" data-id="${c.id}">Delete</button></td>`;
+    tbody.appendChild(tr);
+  });
+}
+
+document.addEventListener('DOMContentLoaded', ()=>{
+  fetchCMS();
+  document.getElementById('createCmsBtn').addEventListener('click', async ()=>{
+    const type = prompt('Type (page/post/faq/testimonial)','page');
+    const title = prompt('Title');
+    const slug = prompt('Slug (unique)');
+    const content = prompt('Content (HTML/markdown)');
+    if(!type||!title||!slug) return;
+    await fetch('/api/cms', { method:'POST', headers:{ 'Content-Type':'application/json','Authorization':'Bearer '+localStorage.getItem('token') }, body: JSON.stringify({ type, title, slug, content, status:'published' })});
+    fetchCMS();
+  });
+
+  document.querySelector('#cmsTable').addEventListener('click', async (e)=>{
+    if (e.target.matches('.del')) {
+      const id = e.target.getAttribute('data-id');
+      if (!confirm('Delete?')) return;
+      await fetch('/api/cms/'+id, { method:'DELETE', headers:{ 'Authorization':'Bearer '+localStorage.getItem('token') }});
+      fetchCMS();
+    }
+    if (e.target.matches('.edit')) {
+      const id = e.target.getAttribute('data-id');
+      const newTitle = prompt('New title');
+      const newContent = prompt('New content');
+      await fetch('/api/cms/'+id, { method:'PUT', headers:{ 'Content-Type':'application/json','Authorization':'Bearer '+localStorage.getItem('token') }, body: JSON.stringify({ title: newTitle, content: newContent })});
+      fetchCMS();
+    }
+  });
+
+  document.getElementById('cmsSearch').addEventListener('input', ()=> fetchCMS());
+});
+</script>
+</body>
+</html>

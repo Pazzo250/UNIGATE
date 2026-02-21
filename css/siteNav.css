@@ -1,0 +1,14 @@
+/* Minimal site-wide nav styles — safe, non-intrusive */
+.top-nav.sitewide { background: var(--bg, #0f1724); color: var(--text, #e6eef6); border-bottom: 1px solid rgba(255,255,255,0.03); }
+.top-nav.sitewide .nav-inner { display:flex; align-items:center; gap:14px; padding:10px 16px; flex-wrap:wrap; }
+.top-nav.sitewide .nav-link { color: var(--muted, #9aa6b2); text-decoration:none; padding:6px 10px; border-radius:6px; display:inline-flex; align-items:center; gap:8px; font-size:14px; }
+.top-nav.sitewide .nav-link i { width:16px; text-align:center; }
+.top-nav.sitewide .nav-link:hover { background: rgba(255,255,255,0.02); color: var(--accent, #2dd4bf); }
+.top-nav.sitewide .nav-link.active { background: rgba(255,255,255,0.03); color: var(--accent, #2dd4bf); font-weight:600; }
+.top-nav.sitewide .nav-utility { margin-left: auto; display:flex; gap:12px; align-items:center; }
+.top-nav.sitewide .site-profile { color: var(--muted); font-size:13px; display:none; margin-right:8px; }
+.top-nav.sitewide .signout-link { color: var(--muted); }
+@media (max-width:900px) {
+  .top-nav.sitewide .nav-inner { padding:8px; gap:8px; }
+  .top-nav.sitewide .nav-utility { width:100%; justify-content:flex-end; margin-top:6px; }
+}

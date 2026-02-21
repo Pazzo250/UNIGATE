@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Admin — Role Permissions</title>
+<link rel="stylesheet" href="../css/admin.css">
+</head>
+<body>
+  <main class="admin-main" style="padding:20px">
+    <h2>Role Permissions</h2>
+
+    <div style="margin-bottom:12px">
+      <select id="roleSelect">
+        <option value="">-- filter by role --</option>
+        <option value="super_admin">super_admin</option>
+        <option value="admin">admin</option>
+        <option value="university_admin">university_admin</option>
+        <option value="staff">staff</option>
+        <option value="agent">agent</option>
+        <option value="student">student</option>
+      </select>
+      <input id="permFilter" placeholder="permission filter" style="margin-left:8px;padding:8px">
+      <button id="searchBtn" class="btn" style="margin-left:8px">Search</button>
+      <button id="seedBtn" class="btn" style="margin-left:8px">Seed Defaults (super_admin only)</button>
+      <button id="createBtn" class="btn" style="margin-left:8px">Create</button>
+    </div>
+
+    <table id="rpTable" class="table">
+      <thead><tr><th>Role</th><th>Permission</th><th>Created</th><th>Actions</th></tr></thead>
+      <tbody></tbody>
+    </table>
+  </main>
+
+<script>
+async function fetchRPs() {
+  const role = document.getElementById('roleSelect').value;
+  const perm = document.getElementById('permFilter').value.trim();
+  const qs = new URLSearchParams();
+  if (role) qs.set('role', role);
+  if (perm) qs.set('permission', perm);
+  const res = await fetch('/api/role-permissions?' + qs.toString(), { headers: { 'Authorization': 'Bearer ' + localStorage.getItem('token') }});
+  const j = await res.json();
+  const tbody = document.querySelector('#rpTable tbody'); tbody.innerHTML = '';
+  (j.rows || []).forEach(r => {
+    const tr = document.createElement('tr');
+    tr.innerHTML = `<td>${r.role}</td><td>${r.permission}</td><td>${new Date(r.createdAt).toLocaleString()}</td>
+      <td><button data-id="${r.id}" class="del">Delete</button></td>`;
+    tbody.appendChild(tr);
+  });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  fetchRPs();
+  document.getElementById('searchBtn').addEventListener('click', fetchRPs);
+  document.getElementById('createBtn').addEventListener('click', async () => {
+    const role = prompt('Role (e.g. admin)');
+    const permission = prompt('Permission (e.g. cms.create)');
+    if (!role || !permission) return;
+    const res = await fetch('/api/role-permissions', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + localStorage.getItem('token') },
+      body: JSON.stringify({ role, permission })
+    });
+    if (!res.ok) { alert('Create failed: ' + (await res.json()).message); return; }
+    fetchRPs();
+  });
+
+  document.getElementById('seedBtn').addEventListener('click', async () => {
+    if (!confirm('Seed default permissions (requires super_admin)?')) return;
+    const res = await fetch('/api/role-permissions/seed', { method: 'POST', headers: { 'Authorization': 'Bearer ' + localStorage.getItem('token') }});
+    const j = await res.json();
+    if (!res.ok) alert('Seed failed: ' + (j.message || 'error'));
+    fetchRPs();
+  });
+
+  document.querySelector('#rpTable').addEventListener('click', async (e) => {
+    if (e.target.matches('.del')) {
+      const id = e.target.getAttribute('data-id');
+      if (!confirm('Delete permission?')) return;
+      const res = await fetch('/api/role-permissions/' + id, { method: 'DELETE', headers: { 'Authorization': 'Bearer ' + localStorage.getItem('token') }});
+      if (!res.ok) alert('Delete failed');
+      fetchRPs();
+    }
+  });
+});
+</script>
+</body>
+</html>

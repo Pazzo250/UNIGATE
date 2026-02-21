@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Admin — Audit Logs</title>
+<link rel="stylesheet" href="../css/admin.css">
+</head>
+<body>
+  <main class="admin-main" style="padding:20px">
+    <h2>Audit Logs</h2>
+    <div style="margin-bottom:12px">
+      <input id="filterActor" placeholder="actor email" style="padding:8px">
+      <input id="filterAction" placeholder="action" style="padding:8px;margin-left:8px">
+      <button id="searchBtn" class="btn" style="margin-left:8px">Search</button>
+      <button id="exportCsvBtn" class="btn" style="margin-left:8px">Export CSV</button>
+    </div>
+
+    <table id="auditTable" class="table">
+      <thead><tr><th>Time</th><th>Actor</th><th>Action</th><th>Target</th><th>Details</th></tr></thead>
+      <tbody></tbody>
+    </table>
+  </main>
+
+<script>
+async function fetchAudit(exportCsv=false){
+  const actor = document.getElementById('filterActor').value.trim();
+  const action = document.getElementById('filterAction').value.trim();
+  const qs = new URLSearchParams();
+  if (actor) qs.set('actorEmail', actor);
+  if (action) qs.set('action', action);
+  if (exportCsv) qs.set('export', 'csv');
+  const url = '/api/audit?' + qs.toString();
+  const opts = { headers: { 'Authorization': 'Bearer ' + localStorage.getItem('token') } };
+  const res = await fetch(url, opts);
+  if (exportCsv) {
+    if (!res.ok) { alert('Export failed'); return; }
+    const blob = await res.blob();
+    const urlb = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = urlb;
+    a.download = `audit-${Date.now()}.csv`;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    URL.revokeObjectURL(urlb);
+    return;
+  }
+  const json = await res.json();
+  const tbody = document.querySelector('#auditTable tbody'); tbody.innerHTML = '';
+  (json.rows || []).forEach(r=>{
+    const tr = document.createElement('tr');
+    tr.innerHTML = `<td>${new Date(r.createdAt).toLocaleString()}</td><td>${r.actorEmail||r.actorId||''}</td><td>${r.action}</td><td>${(r.targetType||'') + (r.targetId ? ' / '+r.targetId : '')}</td><td><pre style="white-space:pre-wrap">${JSON.stringify(r.details||{},null,0)}</pre></td>`;
+    tbody.appendChild(tr);
+  });
+}
+
+document.addEventListener('DOMContentLoaded', ()=>{
+  document.getElementById('searchBtn').addEventListener('click', ()=> fetchAudit(false));
+  document.getElementById('exportCsvBtn').addEventListener('click', ()=> fetchAudit(true));
+  fetchAudit(false);
+});
+</script>
+</body>
+</html>

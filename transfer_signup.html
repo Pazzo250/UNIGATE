@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Transfer Student Registration — Cross Africa University</title>
+  <link rel="stylesheet" href="css/transfer_signup.css">
+  <link rel="stylesheet" href="css/firstyear_signup.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+</head>
+<body>
+
+  <div class="brand">
+      <div class="logo-blob"><img src="logo.png" alt="Cross Africa Universities"></div>
+      <div class="brand-text" aria-hidden="true">                
+      </div>
+  </div>
+
+  <!-- Virtual Advisor Section -->
+  <section class="virtual-advisor" style="padding:20px;background:linear-gradient(135deg, #4cb3ff 0%, #062032 100%);color:#fff;border-radius:12px;margin:20px 0;">
+    <div class="advisor-content" style="display:flex;flex-wrap:wrap;align-items:center;gap:24px;width:100%;max-width:none;margin:0 auto;">
+      
+      <!-- Font Awesome Icon instead of SVG -->
+      <div class="advisor-icon" style="flex-shrink:0;font-size:80px;">
+        <i class="fas fa-user-check" style="color:#fff;"></i>
+      </div>
+
+      <div class="advisor-text" style="flex:1;min-width:250px;">
+        <h2 style="margin:0 0 8px;font-size:28px;">Meet Your Virtual Advisor</h2>
+        <p style="margin:0 0 16px;font-size:16px;">Get instant guidance on your university applications. Our AI-powered advisor helps you choose the right programs, prepare documents, and navigate deadlines.</p>
+        <button id="advisorBtn" class="btn-cta btn-primary" style="background:#fff;color:#062032;padding:12px 24px;border-radius:8px;border:none;font-weight:600;cursor:pointer;">Chat with Advisor</button>
+      </div>
+    </div>
+
+    <div id="advisorChat" class="advisor-chat" style="display:none;padding:20px;background:#fff;color:#000000;border-radius:8px;width:100%;max-width:600px;margin:20px auto 0;">
+      <div class="chat-messages" id="chatMessages" style="max-height:300px;overflow-y:auto;margin-bottom:12px;">
+        <div class="message bot" style="margin-bottom:12px;"><strong>Advisor:</strong> Hello! How can I help you with your university applications today?</div>
+      </div>
+      <div class="chat-input" style="display:flex;gap:12px;">
+        <input type="text" id="chatInput" placeholder="Ask me anything..." style="flex:1;padding:12px;border:1px solid #ddd;border-radius:4px;">
+        <button id="sendBtn" class="btn-cta" style="padding:12px 20px;background:#4cb3ff;color:#fff;border:none;border-radius:4px;cursor:pointer;">Send</button>
+      </div>
+      <div class="quick-replies" style="display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;">
+        <button class="quick-reply-btn" onclick="handleQuickReply('What is the application process?')">Application Process</button>
+        <button class="quick-reply-btn" onclick="handleQuickReply('How do I find scholarships?')">Scholarships</button>
+        <button class="quick-reply-btn" onclick="handleQuickReply('What do I need for a visa?')">Visa Info</button>
+        <button class="quick-reply-btn" onclick="handleQuickReply('What are admission requirements?')">Admissions</button>
+        <button class="quick-reply-btn" onclick="handleQuickReply('What documents are required?')">Requirements</button>
+        <button class="quick-reply-btn" onclick="handleQuickReply('How do I prepare my documents?')">Documents</button>
+      </div>
+    </div>
+  </section>
+
+  <div class="container">
+    <div class="form-card">
+      <a class="back" href="index.html"> Back</a>
+      <h1>Transfer Student Registration</h1>
+      <p class="muted">Complete your transfer application quickly and securely.</p>
+
+      <!-- Google Registration -->
+      <button class="google-btn">
+        <i class="fab fa-google"></i> Register with Google
+      </button>
+
+      <form id="transferRegForm" enctype="multipart/form-data">
+
+        <!-- Personal Information -->
+        <fieldset>
+          <legend>Personal Information</legend>
+          <label>Full Name<input name="full_name" type="text" placeholder="John Doe" required></label>
+          <label>Date of Birth<input name="dob" type="date" required></label>
+          <label>Gender
+            <select name="gender" required>
+              <option value="">Select Gender</option>
+              <option value="female">Female</option>
+              <option value="male">Male</option>
+              <option value="other">Other</option>
+            </select>
+          </label>
+          <label>Country
+            <select name="country" required>
+              <option value="">Select Country</option>
+              <option value="kenya">Kenya</option>
+              <option value="south-africa">South Africa</option>
+              <option value="ghana">Ghana</option>
+              <option value="nigeria">Nigeria</option>
+              <option value="rwanda">Rwanda</option>
+              <option value="uganda">Uganda</option>
+              <option value="tanzania">Tanzania</option>
+              <option value="ethiopia">Ethiopia</option>
+              <option value="egypt">Egypt</option>
+            </select>
+          </label>
+        </fieldset>
+
+        <!-- Contact & Login Info -->
+        <fieldset>
+          <legend>Contact & Login Info</legend>
+          <label>Email Address<input name="email" type="email" placeholder="example@mail.com" required></label>
+          <label>Create Password<input name="password" type="password" placeholder="Enter password" required></label>
+          <label>Confirm Password<input name="confirm_password" type="password" placeholder="Re-enter password" required></label>
+        </fieldset>
+
+        <!-- Academic Information -->
+        <fieldset>
+          <legend>Previous Academic Information</legend>
+          <label>Previous Institution<input name="previous_institution" type="text" placeholder="University name" required></label>
+          <label>Program / Major<input name="previous_program" type="text" placeholder="Bachelor of Science" required></label>
+          <label>Approx. Transferable Credits<input name="credits" type="number" min="0" max="200" placeholder="e.g., 45" required></label>
+          <label>GPA / Academic Performance<input name="gpa" type="number" step="0.01" min="0" max="4.0" placeholder="3.50"></label>
+          <label>Official Transcript (PDF)<input name="transcript" type="file" accept=".pdf" required></label>
+        </fieldset>
+
+        <!-- Additional Information -->
+        <fieldset>
+          <legend>Additional Information</legend>
+          <label>Reason for Transfer<textarea name="transfer_reason" rows="4" placeholder="Briefly explain why you want to transfer" required></textarea></label>
+          <label>Special Needs / Accommodations (Optional)<textarea name="special_needs" rows="3" placeholder="Any special considerations"></textarea></label>
+        </fieldset>
+
+        <!-- Consent -->
+        <fieldset>
+          <label><input type="checkbox" name="consent" required> I certify that the information provided is accurate and I agree to the terms and conditions.</label>
+        </fieldset>
+
+        <button class="submit" type="submit">Register as Transfer Student</button>
+      </form>      
+    </div>    
+  </div>
+  <!-- Footer animated line -->
+      <div class="footer-line"></div>
+</body>
+</html>
