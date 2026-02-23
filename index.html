@@ -74,38 +74,29 @@
           <a href="#" class="create-link openPopup" data-type="create">Create an account →</a>
         </div>
 
-        <!-- SCREEN: LOGIN FORM -->
-        <div id="loginScreen" class="auth-screen">
-          <h3 id="loginTitle">Sign In</h3>
-          <form id="loginForm" class="login-form" novalidate>
-            <div id="extraFieldContainer"></div>
-            <label class="sr-only" for="loginEmail">Email</label>
-            <input type="email" id="loginEmail" placeholder="Email" required autocomplete="email">
-            <label class="sr-only" for="loginPassword">Password</label>
-            <input type="password" id="loginPassword" placeholder="Password" required autocomplete="current-password">
-            <button type="submit" class="submit-btn">Log In</button>
-          </form>
-          <p id="errorMsg" class="error" role="alert" aria-live="polite"></p>
-          <button id="backToSelect" class="link-btn">← Back</button>
-        </div>
+                <!-- SCREEN: LOGIN FORM -->
+                <div id="loginScreen" class="auth-screen">
+                    <form id="loginForm" class="login-form" novalidate>
+                        <div id="extraFieldContainer"></div>
+                        <label class="sr-only" for="loginEmail">Email</label>
+                        <input type="email" id="loginEmail" placeholder="Email" required autocomplete="email">
+                        <label class="sr-only" for="loginPassword">Password</label>
+                        <input type="password" id="loginPassword" placeholder="Password" required autocomplete="current-password">
+                        <button type="submit" class="submit-btn">Log In</button>
+                    </form>
+                    <p id="errorMsg" class="error" role="alert" aria-live="polite"></p>
+                </div>
 
-        <!-- SCREEN: CREATE ACCOUNT FORM -->
-        <div id="createScreen" class="auth-screen">
-          <h3>Create Account</h3>
-          <form id="createForm" class="login-form" novalidate>
-            <label class="sr-only" for="createName">Name</label>
-            <input type="text" id="createName" placeholder="Full Name" required autocomplete="name">
-            <label class="sr-only" for="createEmail">Email</label>
-            <input type="email" id="createEmail" placeholder="Email" required autocomplete="email">
-            <label class="sr-only" for="createPassword">Password</label>
-            <input type="password" id="createPassword" placeholder="Password" required autocomplete="new-password">
-            <label class="sr-only" for="createPassword2">Confirm Password</label>
-            <input type="password" id="createPassword2" placeholder="Confirm Password" required autocomplete="new-password">
-            <button type="submit" class="submit-btn">Create Account</button>
-          </form>
-          <p id="createErrorMsg" class="error" role="alert" aria-live="polite"></p>
-          <button id="backToSelectFromCreate" class="link-btn">← Back</button>
-        </div>
+                <!-- SCREEN: CREATE ACCOUNT OPTIONS -->
+                <div id="createScreen" class="auth-screen">
+                    <h3>Create Account</h3>
+                    <div class="create-options">
+                        <a class="create-btn" href="firstyear_signup.html">First-year Student →</a>
+                        <a class="create-btn" href="transfer_signup.html">Transfer Student →</a>
+                    </div>
+                    <p id="createErrorMsg" class="error" role="alert" aria-live="polite"></p>
+                    <button id="backToSelectFromCreate" class="link-btn">Close</button>
+                </div>
 
       </div>
     </div>

@@ -7,6 +7,10 @@ cursor: pointer;
 position: relative;
 }
 
+/* Ensure navbar/profile sits above overlays so clicks reach it */
+.top-navbar { z-index: 11000; }
+.profile-menu { z-index: 11001; pointer-events: auto; }
+
 
 .profile-avatar {
 width: 32px;
@@ -16,30 +20,30 @@ border-radius: 50%;
 
 
 .profile-dropdown {
-position: absolute;
-top: 60px;
-right: 0;
-background: #1e1e2f;
-border-radius: 8px;
-padding: 10px 0;
-width: 150px;
-box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-display: none;
-z-index: 999;
+  position: absolute;
+  top: 60px;
+  right: 0;
+  background: #0f1724;
+  border-radius: 8px;
+  padding: 8px 0;
+  width: 190px;
+  box-shadow: 0 8px 20px rgba(2,6,23,0.6);
+  display: none;
+  z-index: 999;
 }
 
 
 .profile-dropdown .dropdown-item {
-display: block;
-padding: 10px 15px;
-color: #fff;
-text-decoration: none;
-font-size: 14px;
+  display: block;
+  padding: 10px 16px;
+  color: #e6eef8;
+  text-decoration: none;
+  font-size: 14px;
 }
 
 
 .profile-dropdown .dropdown-item:hover {
-background: #2d2d44;
+  background: rgba(255,255,255,0.03);
 }
 
 
@@ -175,10 +179,12 @@ color: #000;
 .auth-popup-content {
   width: 360px;
   max-width: calc(100% - 32px);
-  background: #fff;
-  border-radius: 10px;
-  padding: 20px;
+  background: #0b1220; /* dark card to match site theme */
+  color: #e6eef8;
+  border-radius: 12px;
+  padding: 22px;
   position: relative;
+  box-shadow: 0 8px 30px rgba(2,6,23,0.6);
   animation: popupIn .18s ease-out;
 }
 
@@ -196,15 +202,45 @@ color: #000;
 .auth-btn { flex:1; padding:10px; border:none; border-radius:6px; cursor:pointer; background:#007bff; color:#fff; }
 .auth-btn:hover { background:#0056c5; }
 
+/* Distinct submit button colors for Login vs Create screens */
+#loginScreen .submit-btn { background: #0069d9; }
+#loginScreen .submit-btn:hover { opacity: 0.95; }
+#createScreen .submit-btn { background: #17a2b8; }
+#createScreen .submit-btn:hover { opacity: 0.95; }
+
+/* Slightly larger role buttons for better tap targets */
+.roles .auth-btn { padding:12px; border-radius:8px; font-weight:600; }
+
+/* Create account option buttons */
+.create-options { display:flex; flex-direction:column; gap:10px; margin:12px 0; }
+.create-btn {
+  display:block; text-align:center; padding:12px 14px; border-radius:10px; text-decoration:none; color:#07212b;
+  background: linear-gradient(90deg,#ffffff,#e6f7f8); font-weight:800;
+  box-shadow: 0 6px 18px rgba(2,6,23,0.35);
+}
+.create-btn:hover { opacity:0.98; }
+
+/* Adjust popup headings for clarity */
+.auth-header h2, .auth-screen h3 { color:#e6eef8; }
+
 /* Form */
 .login-form input {
-  width:100%; padding:10px; border-radius:6px; border:1px solid #ccc; margin:8px 0; box-sizing:border-box;
+  width:100%; padding:12px; border-radius:8px; border:1px solid rgba(255,255,255,0.08); margin:10px 0; box-sizing:border-box;
+  background: rgba(255,255,255,0.03);
+  color: #e6eef8;
+  font-size:14px;
 }
 .submit-btn {
-  width:100%; padding:10px; margin-top:6px; border:none; border-radius:6px;
-  background:#28a745; color:#fff; cursor:pointer;
+  width:100%; padding:12px; margin-top:10px; border:none; border-radius:8px;
+  background: linear-gradient(90deg,#0ea5a4,#0b7285); color:#fff; cursor:pointer;
+  font-weight:700; box-shadow: 0 6px 14px rgba(11,114,133,0.18);
 }
 .submit-btn:hover { opacity:0.95; }
+
+/* Placeholder color for inputs */
+.login-form input::placeholder, .login-form textarea::placeholder {
+  color: rgba(230,238,248,0.55);
+}
 
 /* Back button */
 .link-btn { margin-top:10px; background:transparent; border:none; color:#007bff; cursor:pointer; }

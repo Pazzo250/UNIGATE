@@ -6,6 +6,9 @@
     <title>UNIGATE - Start Your Application</title>
     <meta name="description" content="Begin your university application journey. Choose your path: first-year student, transfer student, or parent/guardian. Apply to multiple African universities.">
     <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/profileMenu.css">
+    <link rel="stylesheet" href="css/siteNav.css">
     <link rel="stylesheet" href="fontawesome-free-6.7.2-web/css/all.min.css">
     <link rel="icon" href="LOGO.png" type="image/png">
 </head>
@@ -381,5 +384,59 @@
     <script src="js/home.js"></script>
     <script src="js/theme.js"></script>
     <script src="js/profileMenu.js"></script>
+
+        <!-- Authentication Popup Modal (copied from index for header actions) -->
+        <div class="auth-popup" id="authPopup" aria-hidden="true">
+            <div class="auth-popup-content" id="popupContent" role="dialog" aria-modal="true">
+
+                <!-- Header -->
+                <div class="auth-header">
+                    <h2 id="popupHeading">Sign In</h2>
+                    <button id="closePopup" class="close-btn" aria-label="Close popup">×</button>
+                </div>
+
+                <!-- SCREEN: Student Selection -->
+                <div id="selectScreen" class="auth-screen active">
+                    <h3 class="auth-role-title">Students</h3>
+                    <div class="roles">
+                        <button class="auth-btn" data-type="firstyear">First-year student</button>
+                        <button class="auth-btn" data-type="transfer">Transfer student</button>
+                    </div>
+                    <p class="no-account">Don't have an account yet?</p>
+                    <a href="#" class="create-link openPopup" data-type="create">Create an account →</a>
+                </div>
+
+                <!-- SCREEN: LOGIN FORM -->
+                <div id="loginScreen" class="auth-screen">
+                    <form id="loginForm" class="login-form" novalidate>
+                        <div id="extraFieldContainer"></div>
+                        <label class="sr-only" for="loginEmail">Email</label>
+                        <input type="email" id="loginEmail" placeholder="Email" required autocomplete="email">
+                        <label class="sr-only" for="loginPassword">Password</label>
+                        <input type="password" id="loginPassword" placeholder="Password" required autocomplete="current-password">
+                        <button type="submit" class="submit-btn">Log In</button>
+                    </form>
+                    <p id="errorMsg" class="error" role="alert" aria-live="polite"></p>
+                </div>
+
+                <!-- SCREEN: CREATE ACCOUNT OPTIONS -->
+                <div id="createScreen" class="auth-screen">
+                    <h3>Create Account</h3>
+                    <div class="create-options">
+                        <a class="create-btn" href="firstyear_signup.html">First-year Student →</a>
+                        <a class="create-btn" href="transfer_signup.html">Transfer Student →</a>
+                    </div>
+                    <p id="createErrorMsg" class="error" role="alert" aria-live="polite"></p>
+                    <button id="backToSelectFromCreate" class="link-btn">Close</button>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Profile Dropdown Menu -->
+        <div class="profile-dropdown" id="profileDropdown" aria-hidden="true">
+            <a href="#" class="dropdown-item openPopup" data-type="signin">Sign In</a>
+            <a href="#" class="dropdown-item openPopup" data-type="create">Create Account</a>
+        </div>
 </body>
 </html>

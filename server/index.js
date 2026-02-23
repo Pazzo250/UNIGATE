@@ -7,6 +7,13 @@ const morgan = require('morgan');
 const bodyParser = require('body-parser');
 
 const { sequelize } = require('./models');
+// Prisma client (optional side-by-side). Run `npm install` and `npm run prisma:generate` to enable.
+let prisma;
+try {
+  prisma = require('./prismaClient');
+} catch (e) {
+  console.warn('Prisma client not loaded:', e.message || e);
+}
 
 const app = express();
 app.use(helmet());
@@ -34,6 +41,15 @@ app.use((err, req, res, next) => {
 const PORT = process.env.PORT || 3000;
 (async () => {
   try {
+    // Connect Prisma (if available)
+    if(prisma && typeof prisma.$connect === 'function'){
+      try{
+        await prisma.$connect();
+        console.log('Prisma connected to SQLite');
+      }catch(e){
+        console.warn('Prisma failed to connect:', e.message || e);
+      }
+    }
     await sequelize.sync({ alter: true }); // create tables (empty DB)
     console.log('DB synced');
 

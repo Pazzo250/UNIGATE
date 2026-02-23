@@ -129,21 +129,34 @@ document.addEventListener('DOMContentLoaded', () => {
           return;
         }
 
-        // Save to localStorage for demo purposes
-        const user = {
+        // POST to server register endpoint
+        const payload = {
           email,
           password,
           name: formData.get('name') || '',
-          surname: formData.get('surname') || '',
-          dob: formData.get('dob') || '',
-          phone: `${formData.get('country_code') || ''}${formData.get('phone') || ''}`,
-          addresses: Array.from(document.querySelectorAll('.saved-address')).map(el => el.textContent)
+          role: 'student'
         };
 
-        localStorage.setItem('user', JSON.stringify(user));
-
-        alert('Account created successfully! Redirecting to login...');
-        window.location.href = 'login.html';
+        fetch('/api/auth/register', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        }).then(async res => {
+          if (res.status === 201) {
+            const data = await res.json();
+            // store minimal user and redirect to home (or auto-login)
+            const user = { id: data.id, email: data.email, name: data.name, role: data.role };
+            localStorage.setItem('user', JSON.stringify(user));
+            alert('Account created successfully! Redirecting to home...');
+            window.location.href = 'index.html';
+          } else {
+            const err = await res.json().catch(()=>({message:'Registration failed'}));
+            alert(err.message || 'Registration failed');
+          }
+        }).catch(err => {
+          console.error('register error', err);
+          alert('Registration failed — please try again later.');
+        });
       });
     }
 
